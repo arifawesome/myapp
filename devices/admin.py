@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Iphone
 
-# Register your models here.
+class IphoneAdmin(admin.ModelAdmin):
+    list_display = ()
+
+
+
+admin.site.register(Iphone, IphoneAdmin)
+

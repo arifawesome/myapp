@@ -26,7 +26,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysterious-mesa-21689.herokuapp.com']
+ALLOWED_HOSTS = ['https://mysterious-mesa-21689.herokuapp.com']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbfqo6k3n50hdp',
+        'USER': 'pgygktzvubquwu',
+        'PASSWORD': 'aba414d7be66fe6958805a50a19b702c4e3d87574d455a4b40a557914c765dc0',
+        'HOST': 'ec2-18-233-32-61.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
