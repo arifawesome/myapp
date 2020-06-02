@@ -26,7 +26,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysterious-mesa-21689.herokuapp.com']
+ALLOWED_HOSTS = ['mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'devices',
+    'rest_framework'
 
 ]
 
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbfqo6k3n50hdp',
-        'USER': 'pgygktzvubquwu',
-        'PASSWORD': 'aba414d7be66fe6958805a50a19b702c4e3d87574d455a4b40a557914c765dc0',
-        'HOST': 'ec2-18-233-32-61.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'apple',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -127,3 +128,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #django_heroku.settings(locals())
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
