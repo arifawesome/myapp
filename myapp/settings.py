@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'apple',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dean4lb4lfpms3s',
+        'USER': 'nqbwqokdafrrhk',
+        'PASSWORD': 'b62ff7a43c756816efce82870f4c7a5f1dbe50396ea4c32ebc7e6ed4380a3204',
+        'HOST': 'ec2-18-214-211-47.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -135,3 +135,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+'''import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)'''
