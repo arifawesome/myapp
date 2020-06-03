@@ -2,8 +2,11 @@ from django.db import models
 
 # Create your models here.
 CONDITION_CHOICES = (
-        ("YES", "YES"),
-        ("NO", "NO"),
+        ("Broken", "Broken"),
+        ("30%", "30%"),
+        ("50%", "50%"),
+        ("75%", "75%"),
+        ("100%", "100%"),
     )
 PROCESSOR_CHOICES = (
        ("1.1Ghz","1.1Ghz"),
@@ -30,15 +33,57 @@ PROCESSOR_CHOICES = (
        ("3.5Ghz","3.5Ghz"),
     )
 
-SCREEN_CHOICES =(
+SCREEN_CHOICES = (
     ("11","11"),
     ("12","12"),
     ("13","13"),
     ("14","14"),
     ("15","15"),
     ("16","16"),
-    
 )
+
+IPAD_GENERATION_CHOICES = (
+    ("1st Gen","1st Gen"),
+    ("2nd Gen","2nd Gen"),
+    ("3rd Gen","3rd Gen"),
+    ("4th Gen","4th Gen"),
+    ("5th Gen","5th Gen"),
+    ("6th Gen","6th Gen"),
+    ("7th Gen","7th Gen")
+)
+
+CAPACITY_CHOICES=(
+
+        ('16 GB','16 GB'),
+        ('32 GB','32 GB'),
+        ('64 GB','64 GB'),
+        ('128 GB','128 GB'),
+        ('256 GB','256 GB'),
+        ('512 GB','512 GB'),
+        ('750 GB','750 GB'),
+        ('1 TB','1 TB'),
+        ('2 TB','2 TB'),
+        ('3 TB','3 TB'),
+        ('4 TB','4 TB'),
+)
+IPAD_SCREENSIZE_CHOICES=(
+    ("9.7\"","9.7\""),
+    ("10.2\"","10.2\""),
+    ("10.5\"","10.5\""),
+    ("11\"","11\""),
+    ("12.9\"","12.9\""),
+)
+CARRIER_CHOICES=(
+        ("att","AT&T"),
+        ("verizon",'Verizon'),
+        ("tmobile",'Tmobile'),
+        ("sprint",'Sprint'),
+        ("unlocked",'Factory Unlocked'),
+        ('other','Other'),
+        ('wifi','Wifi'),
+)
+
+    
 class Iphone(models.Model):
     class IphoneModel(models.TextChoices):
         iphone11PM='IPhone 11 Pro Max'
@@ -58,16 +103,17 @@ class Iphone(models.Model):
         iphoneSE='Iphone SE'
     iphone_model = models.CharField(choices=IphoneModel.choices,max_length=30,default=0)
 
-    class Carrier(models.TextChoices):
+    '''class Carrier(models.TextChoices):
         att='AT&T'
         verizon='Verizon'
         tmobile='Tmobile'
         sprint='Sprint'
         unlocked='Factory Unlocked'
         other='Other'
-    carrier =models.CharField(choices=Carrier.choices,max_length=30,default=None)
+        wifi='Wifi'''
+    carrier =models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
 
-    class Capacity(models.Choices):
+    '''class Capacity(models.Choices):
         sixteen='16 GB'
         thiry_two='32 GB'
         sixty_four='64 GB'
@@ -76,24 +122,24 @@ class Iphone(models.Model):
         five_twelve= '512 GB'
         one_tb='1 TB'
         two_tb='2 TB'
-        four_tb='4 TB'
+        four_tb='4 TB'''
 
-    capacity = models.CharField(choices=Capacity.choices, max_length=30,default=None)
-
-    Power_On=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
+    capacity = models.CharField(choices=CAPACITY_CHOICES, max_length=30,default=None)
+    condition = models.CharField(choices=CONDITION_CHOICES, max_length=30,blank=True, null=True)
+    #Power_On=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
         #Power_Off='device power off'
 
-    Screen_Lightup=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
+    #Screen_Lightup=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
         #Screen_Not_Lightup='device screen doesn\'t fully lightup'
 
-    Device_Works=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
+    #Device_Works=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
         #Device_Not_Works='Device is not fully funcational'
 
 
-    Scratches=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
+    #Scratches=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
         #No_Scratches = 'There are not any scratches on device'
 
-    Crack=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
+    #Crack=models.CharField(max_length = 3,choices =CONDITION_CHOICES,default=None)
        #No_Crack = 'there are no any cracks on device'
         #condition = models.CharField(choices=Condition.choices, max_length=50)
     Offer=models.CharField(max_length = 3,default=0)
@@ -174,4 +220,18 @@ class Macbook(models.Model):
     
     Cosmetic_condition=models.CharField(choices=CosmeticCondition.choices,max_length=30,default=0)
 
+    offer=models.CharField(max_length=3,default=0)
+
+class Ipad(models.Model):
+    class Ipadmodel(models.TextChoices):
+            iPadPro ="iPad Pro"
+            ipadAir ="iPad Air"
+            iPadMini="iPad mini"
+            iPad ="iPad"
+    ipad_model=models.CharField(choices=Ipadmodel.choices,max_length=30 ,default=0)
+    ipad_generation=models.CharField(choices=IPAD_GENERATION_CHOICES,max_length=30,default=0)
+    ipad_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
+    ipad_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None)
+    ipad_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
