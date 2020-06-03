@@ -26,7 +26,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['django-env.eba-aiavrfdn.us-west-2.elasticbeanstalk.com','mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost']
 
 
 # Application definition
@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aws',
+        'USER': 'admin',
         'PASSWORD': 'arifawesome',
-        'HOST': 'database-1.coqke3ldxu6d.us-west-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'HOST': 'database-1.cy7uixu18d2d.us-west-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
