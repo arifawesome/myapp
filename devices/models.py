@@ -10,6 +10,8 @@ CONDITION_CHOICES = (
     )
 PROCESSOR_CHOICES = (
        ("1.1Ghz","1.1Ghz"),
+       ("1.1Ghz i3","1.1Ghz i3"),
+        ("1.1Ghz i5","1.1Ghz i5"),
         ("1.2Ghz","1.2Ghz"),
         ("1.3Ghz","1.3Ghz"),
         ("1.4Ghz","1.4Ghz"),
@@ -82,7 +84,15 @@ CARRIER_CHOICES=(
         ('other','Other'),
         ('wifi','Wifi'),
 )
-
+OTHER_CHOICES=(
+        ("1.1Ghz i3","1.1Ghz i3"),
+        ("1.1Ghz i5","1.1Ghz i5"),
+        ("Dedicated Graphics","Dedicated Graphics"),
+        ("Retina",'Retina'),
+        ("No Retina",'No Retina'),
+        ('Touch Vega','Touch Vega'),
+        ('Touch','Touch'),
+)
     
 class Iphone(models.Model):
     class IphoneModel(models.TextChoices):
@@ -211,7 +221,7 @@ class Macbook(models.Model):
 
     year=models.CharField(choices=Year.choices,max_length=30,default=0)
 
-
+    other=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
     class CosmeticCondition(models.TextChoices):
         Broken="Broken"
         Fair="Fair"
@@ -235,3 +245,50 @@ class Ipad(models.Model):
     ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None)
     ipad_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
+
+class SamsungPhone(models.Model):
+    class Samsungmodel(models.TextChoices):
+            GalaxyZFlip ="Galaxy Z-Flip"                  
+            GalaxyFoldSMF900="Galaxy Fold SM-F900" 
+            GalaxyNote10PlusSMN975="Galaxy Note 10+ SM-N975"
+            GalaxyNote10SMN970="Galaxy Note 10 SM-N970"
+            GalaxyS10Plus="Galaxy S10+"
+            GalaxyS10="Galaxy S10"
+            GalaxyS10e="Galaxy S10e"  
+            GalaxyNote9SMN960="Galaxy Note 9 SM-N960"
+            GalaxyS9PlusSMG965A="Galaxy S9+ SM-G965A" 	
+            GalaxyS9SMG960A="Galaxy S9 SM-G960A"
+            GalaxyS8PlusSMG955A="Galaxy S8+ SM-G955A"
+            GalaxyS8SMG950A ="GalaxyS8SMG950A"
+            GalaxyS8ActiveSMG892A="Galaxy S8 Active SM-G892A"
+            GalaxyNote8SMN950A="Galaxy Note 8 SM-N950A"
+            GalaxyS7edgeSMG935A="Galaxy S7 edge SM-G935A" 
+            GalaxyS7SMG930A="Galaxy S7 SM-G930A"
+            GalaxyS6edgePlusSMG928A="Galaxy S6 edge+ SM-G928"
+            GalaxyS6EdgeSMG925V="Galaxy S6 Edge SM-G925V"
+            GalaxyS20="Galaxy S20"
+            GalaxyS20Ultra="Galaxy S20 Ultra" 
+            GalaxyS20Plus="Galaxy S20+"
+    samsung_model=models.CharField(choices=Samsungmodel.choices,max_length=30 ,default=0)
+    samsung_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
+    samsung_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    offer=models.CharField(max_length=3,default=0)
+
+class GooglePhone(models.Model):
+    class Googlemodel(models.TextChoices):
+            Pixel4XL='Pixel 4 XL'
+            Pixel4="Pixel 4"
+            Pixel3XL="Pixel 3 XL"
+            Pixel3aXL="Pixel 3a XL"
+            Pixel3a="Pixel 3a"
+            Pixel3="Pixel 3"
+            Pixel2XL="Pixel 2 XL"
+            Pixel2="Pixel 2"  
+
+    google_model=models.CharField(choices=Googlemodel.choices,max_length=30 ,default=0)
+    google_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
+    google_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    google_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    offer=models.CharField(max_length=3,default=0)
+
