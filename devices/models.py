@@ -1,8 +1,15 @@
 from django.db import models
 
 # Create your models here.
+
+ENGRAVING_CHOICES = (
+        ("Yes", "yes"),
+        ("No%", "no"),
+        
+    )
 CONDITION_CHOICES = (
         ("Broken", "Broken"),
+        ("Working%", "Working"),
         ("30%", "30%"),
         ("50%", "50%"),
         ("75%", "75%"),
@@ -44,7 +51,7 @@ SCREEN_CHOICES = (
     ("16","16"),
 )
 
-IPAD_GENERATION_CHOICES = (
+GENERATION_CHOICES = (
     ("1st Gen","1st Gen"),
     ("2nd Gen","2nd Gen"),
     ("3rd Gen","3rd Gen"),
@@ -83,6 +90,8 @@ CARRIER_CHOICES=(
         ("unlocked",'Factory Unlocked'),
         ('other','Other'),
         ('wifi','Wifi'),
+        ('wifi Only','Wifi Only'),
+        ('wifi + Cellular','wifi + Cellular'),
 )
 OTHER_CHOICES=(
         ("1.1Ghz i3","1.1Ghz i3"),
@@ -93,7 +102,37 @@ OTHER_CHOICES=(
         ('Touch Vega','Touch Vega'),
         ('Touch','Touch'),
 )
-    
+WATCH_EDITION_CASING_CHOICES=(
+        ("Sport-Aluminium Case","Sport-Aluminium case"),
+        ("Regular-Steel Case","Regular-Steel Case"),
+        ("Hermes-Steel Case","Hermes-Steel Case"),
+        ("Edition-Steel Case",'Edition-Steel Case'),
+        ("Edition-Titanium Case",'Edition-Titanium Case'),
+        ("Edition-Ceramic Case",'Edition-Ceramic Case'),
+        ('Nike+ -Aluminium Case','Nike+ -Aluminium Case'),
+        
+)
+
+WATCHSIZE_CHOICES=(
+    ("38mm","38mm"),
+    ("40mm","40mm"),
+    ("42mm","42mm"),
+    ("44mm","44mm"),
+)
+
+WATCH_BAND_CHOICES=(
+        ("Sport Band-Any Color","Sport Band-Any Color"),
+        ("Nylon Band-Any Color","Nylon Band-Any Color"),
+        ("Milanese Loop","Milanese loop"),
+        ("Classic Buckle",'Classic Buckle'),
+        ("Leather Loop",'Leather Loop'),
+        ("Modern Buckle",'Modern Buckle'),
+        ('Hermes Band','Hermes Band'),
+        ('Link Bracelet','Link Bracelet'),
+        ('Gold Buckle-Any Band','Gold Buckle-Any Band'),
+        
+)
+
 class Iphone(models.Model):
     class IphoneModel(models.TextChoices):
         iphone11PM='IPhone 11 Pro Max'
@@ -239,7 +278,7 @@ class Ipad(models.Model):
             iPadMini="iPad mini"
             iPad ="iPad"
     ipad_model=models.CharField(choices=Ipadmodel.choices,max_length=30 ,default=0)
-    ipad_generation=models.CharField(choices=IPAD_GENERATION_CHOICES,max_length=30,default=0)
+    ipad_generation=models.CharField(choices=GENERATION_CHOICES,max_length=30,default=0)
     ipad_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     ipad_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
     ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None)
@@ -290,5 +329,32 @@ class GooglePhone(models.Model):
     google_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     google_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
     google_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    offer=models.CharField(max_length=3,default=0)
+
+class Ipod(models.Model):
+    class Ipod(models.TextChoices):
+            Touch="Touch"
+
+    ipod_model=models.CharField(choices=Ipod.choices,max_length=30 ,default=0)
+    ipod_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
+    ipod_generation=models.CharField(choices=GENERATION_CHOICES,max_length=30,default=0)
+    ipod_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    ipod_engraving=models.CharField(choices=ENGRAVING_CHOICES,max_length=30,default=None)
+    offer=models.CharField(max_length=3,default=0)
+class Iwatch(models.Model):
+    class Iwatch(models.TextChoices):
+        AppleWatchOriginal="Apple Watch Original"
+        AppleWatchSeries1="Apple Watch Series 1"
+        AppleWatchSeries2="Apple Watch Series 2"
+        AppleWatchSeries3="Apple Watch Series 3"
+        AppleWatchSeries4="Apple Watch Series 4"
+        AppleWatchSeries5="Apple Watch Series 5"
+
+    iwatch_model=models.CharField(choices=Iwatch.choices,max_length=30 ,default=0)
+    iwatch_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=0)
+    iwatch_edition_casing=models.CharField(choices=WATCH_EDITION_CASING_CHOICES,max_length=30,default=0)
+    iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0)
+    iwatch_band=models.CharField(choices=WATCH_BAND_CHOICES,max_length=30,default=0)
+    iwatch_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 

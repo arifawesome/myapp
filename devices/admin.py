@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone
+from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch
 
 class IphoneAdmin(admin.ModelAdmin):
     list_display = ('iphone_model','carrier','capacity','Offer')
@@ -26,8 +26,20 @@ class GooglephoneAdmin(admin.ModelAdmin):
     list_filter = ('google_model','google_capacity','google_carrier','offer')
     search_field =('google_model','google_capacity','google_carrier','offer')
 
+class IpodAdmin(admin.ModelAdmin):
+    list_display = ('ipod_model','ipod_capacity','offer','ipod_generation')
+    list_filter = ('ipod_model','ipod_capacity','offer','ipod_generation')
+    search_field =('ipod_model','ipod_capacity','offer','ipod_generation')
+
+class IwatchAdmin(admin.ModelAdmin):
+    list_display = ('iwatch_model','iwatch_carrier','iwatch_size','offer')
+    list_filter = ('iwatch_model','iwatch_carrier','iwatch_size','offer')
+    search_field =('iwatch_model','iwatch_carrier','iwatch_size','offer')
+
 admin.site.register(Iphone, IphoneAdmin)
 admin.site.register(Macbook, MacbookAdmin)
 admin.site.register(Ipad, IpadAdmin)
 admin.site.register(SamsungPhone, SamsungphoneAdmin)
 admin.site.register(GooglePhone, GooglephoneAdmin)
+admin.site.register(Ipod, IpodAdmin)
+admin.site.register(Iwatch, IwatchAdmin)
