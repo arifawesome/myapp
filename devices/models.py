@@ -356,7 +356,8 @@ class Iwatch(models.Model):
     iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0)
     iwatch_band=models.CharField(choices=WATCH_BAND_CHOICES,max_length=30,default=0)
     iwatch_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
-    iwatch_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None)
+    iwatch_functional=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     iwatch_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
+
 
