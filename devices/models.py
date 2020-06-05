@@ -281,7 +281,7 @@ class Ipad(models.Model):
     ipad_generation=models.CharField(choices=GENERATION_CHOICES,max_length=30,default=0)
     ipad_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     ipad_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
-    ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None)
+    ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None,blank=True,null=True)
     ipad_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 
