@@ -351,10 +351,12 @@ class Iwatch(models.Model):
         AppleWatchSeries5="Apple Watch Series 5"
 
     iwatch_model=models.CharField(choices=Iwatch.choices,max_length=30 ,default=0)
-    iwatch_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=0)
+    iwatch_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=0,blank=True,null=True)
     iwatch_edition_casing=models.CharField(choices=WATCH_EDITION_CASING_CHOICES,max_length=30,default=0)
     iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0)
     iwatch_band=models.CharField(choices=WATCH_BAND_CHOICES,max_length=30,default=0)
     iwatch_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    iwatch_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None)
+    iwatch_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 
