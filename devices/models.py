@@ -7,7 +7,7 @@ DEVICES_CHOICES = (
     ("iPod","iPod"),
     ("Macbook","Macbook"),
     ("iWatch","iWatch"),
-    ("Apple Tv","Apple Tv),
+    ("Apple Tv","Apple Tv"),
     ("Android Phones","Android Phones"),
     ("Air Pods","Air Pods"),
     ("PC Laptop","PC Laptop"),
