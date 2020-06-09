@@ -11,7 +11,7 @@ DEVICES_CHOICES = (
     ("Android Phones","Android Phones"),
     ("Air Pods","Air Pods"),
     ("PC Laptop","PC Laptop"),
-    ("Other","Other')
+    ("Other","Other"),
     
 )
 
