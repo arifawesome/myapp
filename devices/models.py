@@ -1,6 +1,19 @@
 from django.db import models
 
 # Create your models here.
+DEVICES_CHOICES = (
+    ("iPhone","iPhone"),
+    ("iPad","iPad"),
+    ("iPod","iPod"),
+    ("Macbook","Macbook"),
+    ("iWatch","iWatch"),
+    ("Apple Tv","Apple Tv),
+    ("Android Phones","Android Phones"),
+    ("Air Pods","Air Pods"),
+    ("PC Laptop","PC Laptop"),
+    ("Other","Other')
+    
+)
 
 ENGRAVING_CHOICES = (
         ("Yes", "yes"),
@@ -132,6 +145,9 @@ WATCH_BAND_CHOICES=(
         ('Gold Buckle-Any Band','Gold Buckle-Any Band'),
         
 )
+class Devices(models.Model):
+    device = models.CharField(choices=DEVICES_CHOICES,max_length=30,default=0)
+    info = models.CharField(max_length=300,blank=True, null=True)
 
 class Iphone(models.Model):
     class IphoneModel(models.TextChoices):

@@ -26,7 +26,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysql2.eba-j7g2mmes.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['django-myapp2.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','django-myapp3.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost:8000','127.0.0.1:8000','localhost']
 
 
 # Application definition
@@ -142,7 +142,7 @@ REST_FRAMEWORK = {
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 CORS_ORIGIN_WHITELIST =[
-"http://localhost:3000",
+   "http://localhost:3000",
 ]
 
 
