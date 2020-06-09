@@ -53,5 +53,5 @@ admin.site.register(SamsungPhone, SamsungphoneAdmin)
 admin.site.register(GooglePhone, GooglephoneAdmin)
 admin.site.register(Ipod, IpodAdmin)
 admin.site.register(Iwatch, IwatchAdmin)
-admin.site.register(Devices, Devicesadmin)
+admin.site.register(Devices, DevicesAdmin)
 

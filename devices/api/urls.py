@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import IphoneListView, IphoneDetailView, MacbookListView, MacbookDetailView,IpadListView,IpadDetailView,SamsungPhoneListView,SamsungPhoneDetailView,GooglePhoneListView,GooglePhoneDetailView,IpodListView,IpodDetailView
-from .views import IwatchListView, IwatchDetailView
+from .views import IwatchListView, IwatchDetailView, DevicesListView, DevicesDetailView
 urlpatterns =[
     path('iphoneapi',IphoneListView.as_view()),
     path('iphoneapi/<pk>/',IphoneDetailView.as_view()),
@@ -15,6 +15,9 @@ urlpatterns =[
     path('ipodapi/',IpodListView.as_view()),
     path('ipodapi/<pk>/',IpodDetailView.as_view()),
     path('iwatchapi/',IwatchListView.as_view()),
-    path('iwatchapi/<pk>/',IwatchDetailView.as_view())
+    path('iwatchapi/<pk>/',IwatchDetailView.as_view()),
+    path('devicesapi/',DevicesListView.as_view()),
+    path('devicesapi/<pk>/',DevicesDetailView.as_view()),
+    
     
 ]
