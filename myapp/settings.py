@@ -26,7 +26,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cash1-env.eba-ufumipdy.us-west-2.elasticbeanstalk.com','django-myapp3.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
