@@ -1,18 +1,18 @@
 from django.contrib import admin
-from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch
-#from import_export.admin import ImportExportModelAdmin
+from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch, Devices
+from import_export.admin import ImportExportModelAdmin
 
-'''@admin.register(Iphone)
+@admin.register(Iphone)
 class IphoneAdmin(ImportExportModelAdmin):
     pass
     list_display = ('iphone_model','carrier','capacity','Offer')
     list_filter = ('iphone_model', 'capacity', 'carrier',)
-    search_field =('iphone_model', 'capacity', 'carrier',)'''
+    search_field =('iphone_model', 'capacity', 'carrier',)
 
-class IphoneAdmin(admin.ModelAdmin):
+'''class IphoneAdmin(admin.ModelAdmin):
     list_display = ('iphone_model','carrier','capacity','Offer')
     list_filter = ('iphone_model', 'capacity', 'carrier',)
-    search_field =('iphone_model', 'capacity', 'carrier',)
+    search_field =('iphone_model', 'capacity', 'carrier',)'''
 
 class MacbookAdmin(admin.ModelAdmin):
     list_display = ('Macbook_Model','Screen_Size','year','offer')
@@ -44,10 +44,14 @@ class IwatchAdmin(admin.ModelAdmin):
     list_filter = ('iwatch_model','iwatch_carrier','iwatch_size','offer')
     search_field =('iwatch_model','iwatch_carrier','iwatch_size','offer')
 
+class DevicesAdmin(admin.ModelAdmin):
+    list_display = ('device','info')
+
 admin.site.register(Macbook, MacbookAdmin)
 admin.site.register(Ipad, IpadAdmin)
 admin.site.register(SamsungPhone, SamsungphoneAdmin)
 admin.site.register(GooglePhone, GooglephoneAdmin)
 admin.site.register(Ipod, IpodAdmin)
 admin.site.register(Iwatch, IwatchAdmin)
-admin.site.register(Iphone, IphoneAdmin)
+admin.site.register(Devices, Devicesadmin)
+
