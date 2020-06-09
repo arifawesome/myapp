@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from devices.models import Iphone, Macbook,Ipad,SamsungPhone,GooglePhone,Iwatch,Ipod
+from devices.models import Iphone, Macbook,Ipad,SamsungPhone,GooglePhone,Iwatch,Ipod, Devices
     
 class IphoneSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,4 +34,9 @@ class IpodSerializer(serializers.ModelSerializer):
 class IwatchSerializer(serializers.ModelSerializer):
     class Meta:
             model = Iwatch
+            fields = '__all__'
+
+class DevicesSerializer(serializers.ModelSerializer):
+    class Meta:
+            model = Devices
             fields = '__all__'

@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView,RetrieveAPIView
-from devices.models import Iphone,Macbook,Ipad,SamsungPhone,GooglePhone,Ipod,Iwatch
-from .serializers import IphoneSerializer, MacbookSerializer,IpadSerializer,SamsungPhoneSerializer,GooglePhoneSerializer, IpodSerializer, IwatchSerializer
+from devices.models import Iphone,Macbook,Ipad,SamsungPhone,GooglePhone,Ipod,Iwatch,Devices
+from .serializers import IphoneSerializer, MacbookSerializer,IpadSerializer,SamsungPhoneSerializer,GooglePhoneSerializer, IpodSerializer, IwatchSerializer, DevicesSerializer
 
 class IphoneListView(ListAPIView):
     queryset=Iphone.objects.all()
@@ -57,3 +57,11 @@ class IwatchListView(ListAPIView):
 class IwatchDetailView(RetrieveAPIView):
     queryset=Iwatch.objects.all()
     serializer_class=IwatchSerializer
+
+class DevicesDetailView(RetrieveAPIView):
+    queryset=Devices.objects.all()
+    serializer_class=DevicesSerializer
+
+class DevicesListView(RetrieveAPIView):
+    queryset=Devices.objects.all()
+    serializer_class=DevicesSerializer
