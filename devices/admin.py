@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch, Devices
+from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch, Devices,SellBulk
 from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Iphone)
@@ -47,6 +47,9 @@ class IwatchAdmin(admin.ModelAdmin):
 class DevicesAdmin(admin.ModelAdmin):
     list_display = ('device','info')
 
+class SellBulkAdmin(admin.ModelAdmin):
+    list_display = ('device','quantity', 'contact_info')
+
 admin.site.register(Macbook, MacbookAdmin)
 admin.site.register(Ipad, IpadAdmin)
 admin.site.register(SamsungPhone, SamsungphoneAdmin)
@@ -54,4 +57,5 @@ admin.site.register(GooglePhone, GooglephoneAdmin)
 admin.site.register(Ipod, IpodAdmin)
 admin.site.register(Iwatch, IwatchAdmin)
 admin.site.register(Devices, DevicesAdmin)
+admin.site.register(SellBulk, SellBulkAdmin)
 

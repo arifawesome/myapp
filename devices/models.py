@@ -148,7 +148,7 @@ WATCH_BAND_CHOICES=(
 class Devices(models.Model):
     device = models.CharField(choices=DEVICES_CHOICES,max_length=30,default=0)
     info = models.CharField(max_length=300,blank=True, null=True)
-
+    imagePath = models.CharField(max_length=300,blank=True, null=True)
 class Iphone(models.Model):
     class IphoneModel(models.TextChoices):
         iphone11PM='IPhone 11 Pro Max'
@@ -377,3 +377,8 @@ class Iwatch(models.Model):
     offer=models.CharField(max_length=3,default=0)
 
 
+class SellBulk(models.Model):
+    device=models.CharField(max_length=30,default=0,blank=True,null=True)
+    quantity=models.CharField(max_length=3,default=0,blank=True,null=True)
+    description=models.CharField(max_length=300,default=0,blank=True,null=True)
+    contact_info=models.CharField(max_length=3,default=0,blank=True,null=True)

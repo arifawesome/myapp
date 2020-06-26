@@ -17,7 +17,7 @@ urlpatterns =[
     path('iwatchapi/',IwatchListView.as_view()),
     path('iwatchapi/<pk>/',IwatchDetailView.as_view()),
     path('devicesapi/',DevicesListView.as_view()),
-    path('devicesapi/<pk>/',DevicesDetailView.as_view()),
+    path('devicesapi/<pk>',DevicesDetailView.as_view()),
     
     
 ]
