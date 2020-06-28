@@ -13,6 +13,11 @@ class IphoneDetailView(RetrieveAPIView):
     queryset=Iphone.objects.all()
     serializer_class=IphoneSerializer
     
+class IphoneCreateView(CreateAPIView):
+    queryset=Iphone.objects.all()
+    serializer_class=IphoneSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
 
 class MacbookListView(ListAPIView):
     queryset=Macbook.objects.all()

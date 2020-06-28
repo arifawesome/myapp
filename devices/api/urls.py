@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import IphoneListView, IphoneDetailView, MacbookListView, MacbookDetailView,IpadListView,IpadDetailView,SamsungPhoneListView,SamsungPhoneDetailView,GooglePhoneListView,GooglePhoneDetailView,IpodListView,IpodDetailView
-from .views import IwatchListView, IwatchDetailView, DevicesListView, DevicesDetailView
+from .views import IwatchListView, IwatchDetailView, DevicesListView, DevicesDetailView, IphoneCreateView
 urlpatterns =[
     path('iphoneapi',IphoneListView.as_view()),
+     path('iphoneapi/create',IphoneCreateView.as_view()),
     path('iphoneapi/<pk>/',IphoneDetailView.as_view()),
     path('macbookapi/',MacbookListView.as_view()),
     path('macbookapi/<pk>/',MacbookDetailView.as_view()),

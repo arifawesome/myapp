@@ -32,6 +32,9 @@ ALLOWED_HOSTS = ['django-myapp2.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','dj
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_auth.registration',
+     'rest_framework.authtoken',
+     'rest_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'import_export',
     'corsheaders',
-     'rest_auth.registration',
-     'rest_framework.authtoken',
-     'rest_auth',
+     
      'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -54,7 +55,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 1
+SITE_ID = 3
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -163,7 +164,14 @@ CORS_ORIGIN_WHITELIST =[
 
 
 CSRF_COOKIE_NAME = "csrftoken"
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT='587'
+EMAIL_HOST_USER='mefordevops@gmail.com'
+EMAIL_HOST_PASSWORD='fgoicupnjumhjxku'
+EMAIL_USE_TLS=True
+EMAIL_USE_SSL=False
