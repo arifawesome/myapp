@@ -11,12 +11,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 #import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+sys.path.append(BASE_DIR)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'myapp.settings'
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myapp.settings")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -51,7 +53,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django_filters'
+    'django_filters',
+    'user',
+    
+  
 
 ]
 
@@ -149,6 +154,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend'
@@ -164,10 +170,12 @@ CORS_ORIGIN_WHITELIST =[
 
 
 CSRF_COOKIE_NAME = "csrftoken"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+REST_SESSION_LOGIN = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_CONFIRMATION_HMAC =True
 
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT='587'
@@ -175,3 +183,4 @@ EMAIL_HOST_USER='mefordevops@gmail.com'
 EMAIL_HOST_PASSWORD='fgoicupnjumhjxku'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
+EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
