@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'user',
+    'sellbulk'
     
   
 
@@ -100,10 +101,10 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aws',
+        'NAME': 'aws_mefordevops',
         'USER': 'admin',
         'PASSWORD': 'arifawesome',
-        'HOST': 'database-1.cy7uixu18d2d.us-west-2.rds.amazonaws.com',
+        'HOST': 'database-1.cgwmlgkf5f69.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
@@ -156,9 +157,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend'
-    )
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10   
 }
 #import dj_database_url
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
@@ -184,3 +185,5 @@ EMAIL_HOST_PASSWORD='fgoicupnjumhjxku'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
+AUTH_USER_MODEL= 'auth.User'
+USER_INFO_MODEL= 'user.UserInfo'

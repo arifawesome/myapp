@@ -23,6 +23,8 @@ from allauth.account.views import confirm_email
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('devices.urls')),
+    path('', include('user.urls')),
+    path('api/', include('sellbulk.urls')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     
