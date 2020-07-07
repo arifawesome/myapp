@@ -3,14 +3,14 @@ from .models import Devices,Inquerer
 class DevicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Devices
-        fields = '__all__'
+        fields = ['deviceType','deviceCondition','deviceQuantity']
 
 class InquererSerializer(serializers.ModelSerializer):
-    devices = DevicesSerializer(many=True)
+    devices= DevicesSerializer(many=True,)
 
     class Meta:
         model = Inquerer
-        fields = ['email', 'firstName', 'lastName','devices']
+        fields = ['devices','email', 'firstName', 'lastName']
 
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')

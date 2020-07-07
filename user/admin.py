@@ -1,12 +1,15 @@
 from django.contrib import admin
-from .models import UserInfo,UserTradeInfo
+from .models import UserInfo,UserTradeInfo,UserAddress
 # Register your models here.
+class UserAddressAdmin(admin.ModelAdmin):
+    list_display = ('addressLine1','city','state',)
+    list_filter = ('addressLine1','city','state',)
+    search_field =('addressLine1','city','state',)
+
 class UserInfoAdmin(admin.ModelAdmin):
-    list_display = ('phoneNumber','city','state','user')
-    list_filter = ('phoneNumber','city','state')
-    search_field =('phoneNumber','city','state')
-
-
+    list_display = ('phoneNumber','secondary_email','user')
+    list_filter = ('phoneNumber','secondary_email','user')
+    search_field =('phoneNumber','secondary_email','user')
 
 
 class UserTradeInfoAdmin(admin.ModelAdmin):
@@ -16,3 +19,4 @@ class UserTradeInfoAdmin(admin.ModelAdmin):
 
 admin.site.register(UserInfo, UserInfoAdmin)
 admin.site.register(UserTradeInfo, UserTradeInfoAdmin)
+admin.site.register(UserAddress, UserAddressAdmin)

@@ -13,7 +13,7 @@ from rest_framework.generics import ListAPIView,RetrieveAPIView,CreateAPIView,De
 
 class UserInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
-    queryset = UserTradeInfo.objects.all()
+    queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
 
     def perform_create(self, serializer):
@@ -21,7 +21,7 @@ class UserInfoList(generics.ListCreateAPIView):
 
 class UserInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
-    queryset = UserTradeInfo.objects.all()
+    queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
 
 class UserTradeInfoList(generics.ListCreateAPIView):
