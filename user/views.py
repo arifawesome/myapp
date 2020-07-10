@@ -16,6 +16,7 @@ class UserInfoList(generics.ListCreateAPIView):
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
 
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
@@ -23,6 +24,7 @@ class UserInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
+    lookup_field='user_id'
 
 class UserTradeInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
@@ -36,7 +38,7 @@ class UserTradeInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserTradeInfo.objects.all()
     serializer_class = UserTradeInfoSerializer
-
+    lookup_field='user_id'
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()

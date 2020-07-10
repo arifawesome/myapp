@@ -32,7 +32,7 @@ ACCEPTANCE_CHOICES=(
 class UserInfo(models.Model):
     user=models.ForeignKey('auth.User', related_name='userinfo', on_delete=models.CASCADE)
     secondary_email=models.EmailField(blank=True,null=True)
-    phoneNumber=models.CharField(max_length=30,null=True)
+    phoneNumber=models.CharField(max_length=20,null=True,blank=True)
     
     def __str__(self):
         return str(self.user) 
@@ -54,7 +54,7 @@ class UserAddress(models.Model):
 class UserTradeInfo(models.Model):
 
     user=models.ForeignKey('auth.User', related_name='user', on_delete=models.CASCADE)
-    tradeReferenceNo=models.CharField(max_length=30)
+    tradeReferenceNo=models.CharField(max_length=30,null=True)
     status=models.CharField(choices=STATUS_CHOICES,max_length=30,null=True)
     address=models.ForeignKey(UserAddress,related_name='addresses',on_delete=models.CASCADE)
     orderDate=models.DateField(null=True,blank=True)
@@ -63,9 +63,9 @@ class UserTradeInfo(models.Model):
     deviceReceived=models.DateField(null=True,blank=True)
     deviceReview=models.CharField(choices=DEVICE_REVIEW_CHOICES,max_length=30,null=True,default=None,blank=True)
     deviceAccepted=models.CharField(choices=ACCEPTANCE_CHOICES,max_length=30,null=True,default=None,blank=True)
-    deviceAcceptanceComment=models.CharField(max_length=300,blank=True)
+    deviceAcceptanceComment=models.CharField(max_length=300,blank=True,null=True)
     paymentMethod=models.CharField(choices=PAYMENT_CHOICES,max_length=30,null=True,blank=True)
-    paymentReferenceNo=models.CharField(max_length=30,blank=True)
+    paymentReferenceNo=models.CharField(max_length=30,blank=True,null=True)
     deviceShippingMethod=models.CharField(choices=SHIPPING_CHOICES,max_length=30,null=True)
-    deviceTrackingInbound=models.CharField(max_length=30,blank=True)
-    deviceTrackingOutbound=models.CharField(max_length=30,blank=True)
+    deviceTrackingInbound=models.CharField(max_length=30,blank=True,null=True)
+    deviceTrackingOutbound=models.CharField(max_length=30,blank=True,null=True)

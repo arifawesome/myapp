@@ -12,10 +12,11 @@ class UserAddressSerializer(serializers.ModelSerializer):
 class UserInfoSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
     useraddress=UserAddressSerializer(many=True)
-
+    secondary_email=serializers.EmailField(max_length=None, min_length=None, allow_blank=True)
+    phoneNumber=serializers.CharField(max_length=20, min_length=None, allow_blank=True, trim_whitespace=True)
     class Meta:
         model = UserInfo
-        fields = ['user','useraddress','secondary_email','phoneNumber']
+        fields = ['user_id','user','useraddress','secondary_email','phoneNumber']
 
     def create(self, validated_data):
         addresses_data = validated_data.pop('useraddress')
@@ -28,7 +29,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
         addresses_data = validated_data.pop('useraddress')
         address = (instance.useraddress).all()
         address = list(address)
-        instance.secondary_email = validated_data.get('econdary_email', instance.secondary_email)
+        instance.secondary_email = validated_data.get('secondary_email', instance.secondary_email)
         instance.phoneNumber = validated_data.get('phoneNumber', instance.phoneNumber)
         instance.save()
 
@@ -50,7 +51,7 @@ class UserTradeInfoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserTradeInfo
-        fields = ['user','tradeReferenceNo','status','address','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound']
+        fields = ['user_id','user','tradeReferenceNo','status','address','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound']
 
         
 class UserSerializer(serializers.ModelSerializer):
