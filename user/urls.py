@@ -7,6 +7,8 @@ urlpatterns = [
     path('UserInfo/<user_id>/', views.UserInfoDetail.as_view()),
     path('UserTradeInfo/', views.UserTradeInfoList.as_view()),
     path('UserTradeInfo/<user_id>/', views.UserTradeInfoDetail.as_view()),
+    path('UserOrder/', views.UserOrderList.as_view()),
+    path('UserOrder/<user_id>/', views.UserOrderDetail.as_view()),
     path('users/', views.UserList.as_view()),
     path('users/<pk>/', views.UserDetail.as_view()),
 ]

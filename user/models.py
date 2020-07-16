@@ -49,14 +49,19 @@ class UserAddress(models.Model):
 
 
     def __str__(self):
-        return str(self.addressType)+ " " +str(self.addressLine1)+ " " +str(self.addressLine2)
+        return str(self.addressType)+ " " +str(self.addressLine1)+ " " +str(self.addressLine2)+ " "+str(self.city)+ " "+str(self.state)+ " "+str(self.zipcode)+ " "+str(self.primaryAddress)
+
+class UserOrder(models.Model):
+    user=models.ForeignKey('auth.User', related_name='userorder', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user) 
 
 class UserTradeInfo(models.Model):
-
-    user=models.ForeignKey('auth.User', related_name='user', on_delete=models.CASCADE)
+    userorder=models.ForeignKey(UserOrder,related_name='usertrade',on_delete=models.CASCADE)
     tradeReferenceNo=models.CharField(max_length=30,null=True)
     status=models.CharField(choices=STATUS_CHOICES,max_length=30,null=True)
-    address=models.ForeignKey(UserAddress,related_name='addresses',on_delete=models.CASCADE)
+    address=models.ForeignKey(UserAddress,related_name='addresses',on_delete=models.CASCADE, null=True, blank=True)
     orderDate=models.DateField(null=True,blank=True)
     lableSent=models.DateField(null=True,blank=True)
     shippingLableReceived=models.DateField(null=True,blank=True)

@@ -1,4 +1,4 @@
-from .models import UserInfo,UserTradeInfo,UserAddress
+from .models import UserInfo,UserTradeInfo,UserAddress,UserOrder
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -46,13 +46,52 @@ class UserInfoSerializer(serializers.ModelSerializer):
         return instance
 
 class UserTradeInfoSerializer(serializers.ModelSerializer):
-    user=serializers.ReadOnlyField(source='user.username')
+    userorder=serializers.ReadOnlyField(source='userorder.user.username')
     address=serializers.ReadOnlyField(source='address.addressLine1')
     
     class Meta:
         model = UserTradeInfo
-        fields = ['user_id','user','tradeReferenceNo','status','address','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound']
+        fields = ['userorder','tradeReferenceNo','status','address','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound']
 
+class UserOrderSerializer(serializers.ModelSerializer):
+    user=serializers.ReadOnlyField(source='user.username')
+    usertrade=UserTradeInfoSerializer(many=True)
+
+    class Meta:
+        model = UserOrder
+        fields = ['user','usertrade',]
+
+    def create(self, validated_data):
+        orders_data = validated_data.pop('usertrade')
+        userorder= UserOrder.objects.create(**validated_data)
+        for order_data in orders_data:
+            UserTradeInfo.objects.create(userorder=userorder, **order_data)
+        return userorder
+
+    def update(self, instance, validated_data):
+        orders_data = validated_data.pop('usertrade')
+        order = (instance.usertrade).all()
+        order = list(order)
+        instance.save()
+
+        for orders_data in orders_data:
+            order = order.pop(0)
+            order.tradeReferenceNo = orders_data.get('tradeReferenceNo', order.tradeReferenceNo)
+            order.status = orders_data.get('status', order.status)
+            order.orderDate = orders_data.get('orderDate', order.orderDate)
+            order.lableSent = orders_data.gett('lableSent', order.lableSent)
+            order.shippingLableReceived = orders_data.get('shippingLableReceived', order.shippingLableReceived)
+            order.deviceReceived = orders_data.get('deviceReceived', order.deviceReceived)
+            order.deviceReview = orders_data.get('deviceReview', order.deviceReview)
+            order.deviceAccepted = orders_data.get('deviceAccepted', order.deviceAccepted)
+            order.deviceAcceptanceComment = orders_data.get('deviceAcceptanceComment', order.deviceAcceptanceComment)
+            order.paymentMethod = orders_data.get('paymentMethod', order.paymentMethod)
+            order.paymentReferenceNo = orders_data.gett('paymentReferenceNo', order.paymentReferenceNo)
+            order.deviceShippingMethod = orders_data.get('deviceShippingMethod', order.deviceShippingMethod)
+            order.deviceTrackingInbound = orders_data.get('deviceTrackingInbound', order.deviceTrackingInbound)
+            order.deviceTrackingOutbound = orders_data.get('deviceTrackingOutbound', order.deviceTrackingOutbound)
+            order.save()
+        return instance
         
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
