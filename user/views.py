@@ -16,7 +16,7 @@ class UserInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
-    filter_backends = [DjangoFilterBackend]
+    #filter_backends = [DjangoFilterBackend]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
