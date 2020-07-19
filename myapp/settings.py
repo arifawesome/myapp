@@ -28,7 +28,7 @@ SECRET_KEY = 'g%@puq!8vralr*xe(46y#=7n4ui7pfa0$x2qh1ub(il-h)pb9q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://0.0.0.0:5000','django-myapp2.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','django-myapp3.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost:8000','127.0.0.1:8000','localhost']
+ALLOWED_HOSTS = ['backend-cashmydevice.herokuapp.com','django-myapp2.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','django-myapp3.eba-gfsawi3a.us-west-2.elasticbeanstalk.com','mysterious-mesa-21689.herokuapp.com','127.0.0.1','localhost:8000','127.0.0.1:8000','localhost']
 
 
 # Application definition
@@ -148,9 +148,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),
+
 django_heroku.settings(locals())
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
