@@ -145,13 +145,110 @@ WATCH_BAND_CHOICES=(
         ('Gold Buckle-Any Band','Gold Buckle-Any Band'),
         
 )
+IPHONE_MODEL_CHOICES=(
+        ('IPhone 11 Pro Max','IPhone 11 Pro Max'),
+        ('Iphone 11 Pro','Iphone 11 Pro'),
+        ('Iphone 11','Iphone 11'),
+        ('Iphone XS Max','Iphone XS Max'),
+        ('Iphone XS','Iphone XS'),
+        ('Iphone XR','Iphone XR'),
+        ('Iphone X','Iphone X'),
+        ('Iphone 8 Plus','Iphone 8 Plus'),
+        ('Iphone 8','Iphone 8'),
+        ('Iphone 7 Plus','Iphone 7 Plus'),
+        ('Iphone 6S Plus','Iphone 6S Plus'),
+        ('Iphone 6s','Iphone 6s'),
+        ('Iphone 6','Iphone 6'),
+        ('Iphone SE 2nd Gen','Iphone SE 2nd Gen'),
+        ('Iphone SE','Iphone SE'),
+)
+MACBOOK_MODEL_CHOICES=(
+        ("Macbook","Macbook"),
+        ("Macbook Air", "Macbook Air"),
+        ("MAcbook Pro","MAcbook Pro"),
+)
+MACBOOK_MODEL_CHOICES=(
+        ("Mid 2012","Mid 2012"),
+        ("Late 2012","Late 2012"),
+        ("Early 2013","Early 2013"),
+        ("Mid 2013","Mid 2013"),
+        ("Late 2013","Late 2013"),
+        ("Early 2014","Early 2014"),
+        ("Mid 2014","Mid 2014"),
+        ("Early 2015","Early 2015"),
+        ("Mid 2015","Mid 2015"),
+        ("Early 2016","Early 2016"),
+        ("Late 2016","Late 2016"),
+        ("Mid 2017","Mid 2017"),
+        ("Mid 2018","Mid 2018"),
+        ("Late 2018","Late 2018"),
+        ("2019","2019"),
+        ("Mid 2019","Mid 2019"),
+        ("2020","2020"),
+)
+COSMETIC_CONDITION_CHOICES=(
+        ("Broken","Broken"),
+        ("Fair","Fair"),
+        ("GooD","Good"),
+        ("Flawless","Flawless"),
+)
+IPAD_MODEL_CHOICES=(
+            ("iPadPro","iPad Pro"),
+            ("ipadAir","iPad Air"),
+            ("iPadMini","iPad mini"),
+            ("iPad","iPad"),
+)
+SAMSUNG_MODEL_CHOICES=(
+            ("Galaxy Z-Flip","Galaxy Z-Flip" ),              
+            ("Galaxy Fold SM-F900","Galaxy Fold SM-F900"),
+            ("Galaxy Note 10+ SM-N975","Galaxy Note 10+ SM-N975"),
+            ("Galaxy Note 10 SM-N970","Galaxy Note 10 SM-N970"),
+            ("Galaxy S10+","Galaxy S10+"),
+            ("Galaxy S10","Galaxy S10"),
+            ("Galaxy S10e","Galaxy S10e"),
+            ("Galaxy Note 9 SM-N960","Galaxy Note 9 SM-N960"),
+            ("Galaxy S9+ SM-G965A","Galaxy S9+ SM-G965A"),
+            ("Galaxy S9 SM-G960A","Galaxy S9 SM-G960A"),
+            ("Galaxy S8+ SM-G955A","Galaxy S8+ SM-G955A"),
+            ("GalaxyS8SMG950A","GalaxyS8SMG950A"),
+            ("Galaxy S8 Active SM-G892A","Galaxy S8 Active SM-G892A"),
+            ("Galaxy Note 8 SM-N950A","Galaxy Note 8 SM-N950A"),
+            ("Galaxy S7 edge SM-G935A","Galaxy S7 edge SM-G935A"), 
+            ("Galaxy S7 SM-G930A","Galaxy S7 SM-G930A"),
+           ("Galaxy S6 edge+ SM-G928","Galaxy S6 edge+SM-G928"),
+           ("Galaxy S6 Edge SM-G925V","Galaxy S6 Edge SM-G925V"),
+            ("Galaxy S20","Galaxy S20"),
+            ("Galaxy S20 Ultra","Galaxy S20 Ultra" ),
+            ("Galaxy S20+","Galaxy S20+"),
+)
+GOOGLE_MODEL_CHOICES=(
+            ('Pixel 4 XL','Pixel 4 XL'),
+            ("Pixel 4","Pixel 4"),
+            ("Pixel 3 XL","Pixel 3 XL"),
+            ("Pixel 3a XL","Pixel 3a XL"),
+            ("Pixel 3a","Pixel 3a"),
+            ("Pixel 3","Pixel 3"),
+            ("Pixel 2 XL","Pixel 2 XL"),
+            ("Pixel 2","Pixel 2"),
+)
+IPOD_CHOICES=(
+    ("Touch","Touch"),
+)
+IWATCH_MODEL_CHOICES=(
+        ("Apple Watch Original","Apple Watch Original"),
+        ("Apple Watch Series 1","Apple Watch Series 1"),
+        ("Apple Watch Series 2","Apple Watch Series 2"),
+        ("Apple Watch Series 3","Apple Watch Series 3"),
+        ("Apple Watch Series 4","Apple Watch Series 4"),
+        ("Apple Watch Series 5","Apple Watch Series 5"),
+)
 class Devices(models.Model):
     device = models.CharField(choices=DEVICES_CHOICES,max_length=30,default=0)
     info = models.CharField(max_length=300,blank=True, null=True)
     imagePath = models.CharField(max_length=300,blank=True, null=True)
 class Iphone(models.Model):
-    class IphoneModel(models.TextChoices):
-        iphone11PM='IPhone 11 Pro Max'
+    '''class IphoneModel(models.Model):
+        phone11PM='IPhone 11 Pro Max'
         iphone11P='Iphone 11 Pro'
         iphone11='Iphone 11'
         iphoneXSM='Iphone XS Max '
@@ -165,8 +262,8 @@ class Iphone(models.Model):
         iphone6S='Iphone 6s'
         iphone6='Iphone 6'
         iphoneSE2='Iphone SE 2nd Gen'
-        iphoneSE='Iphone SE'
-    iphone_model = models.CharField(choices=IphoneModel.choices,max_length=30,default=0)
+        iphoneSE='Iphone SE'''
+    iphone_model = models.CharField(choices=IPHONE_MODEL_CHOICES,max_length=30,default=0)
 
     '''class Carrier(models.TextChoices):
         att='AT&T'
@@ -213,15 +310,15 @@ class Iphone(models.Model):
         return str(self.iphone_model) + " " + str(self.capacity) + " " +str(self.carrier)
 
 class Macbook(models.Model):
-    class MacbookModel(models.TextChoices):
+    '''class MacbookModel(models.TextChoices):
         MB ="Macbook"
         MBA = "Macbook Air"
-        MBP ="MAcbook Pro"
+        MBP ="MAcbook Pro"'''
 
-    Macbook_Model=models.CharField(choices=MacbookModel.choices,max_length=30,default=0)
+    Macbook_Model=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
 
-    class ScreenSize(models.TextChoices):
-       ''' Eleven="11\""
+    '''class ScreenSize(models.TextChoices):
+        Eleven="11\""
         Thirteen="13\""
         Fifteen="15\""
         Sixteen="16\""
@@ -255,7 +352,7 @@ class Macbook(models.Model):
 
     Processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=0)
 
-    class Year(models.TextChoices):
+    '''class Year(models.TextChoices):
         Mid12="Mid 2012"
         Late12="Late 2012"
         Early13="Early 2013"
@@ -272,28 +369,28 @@ class Macbook(models.Model):
         Late18="Late 2018"
         year2019="2019"
         Mid19="Mid 2019"
-        year2020="2020"
+        year2020="2020"'''
 
-    year=models.CharField(choices=Year.choices,max_length=30,default=0)
+    year=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
 
     other=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
-    class CosmeticCondition(models.TextChoices):
+    '''class CosmeticCondition(models.TextChoices):
         Broken="Broken"
         Fair="Fair"
         Good="Good"
-        Flawless="Flawless"
+        Flawless="Flawless"'''
     
-    Cosmetic_condition=models.CharField(choices=CosmeticCondition.choices,max_length=30,default=0)
+    Cosmetic_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0)
 
     offer=models.CharField(max_length=3,default=0)
 
 class Ipad(models.Model):
-    class Ipadmodel(models.TextChoices):
+    '''class Ipadmodel(models.TextChoices):
             iPadPro ="iPad Pro"
             ipadAir ="iPad Air"
             iPadMini="iPad mini"
-            iPad ="iPad"
-    ipad_model=models.CharField(choices=Ipadmodel.choices,max_length=30 ,default=0)
+            iPad ="iPad"'''
+    ipad_model=models.CharField(choices=IPAD_MODEL_CHOICES,max_length=30 ,default=0)
     ipad_generation=models.CharField(choices=GENERATION_CHOICES,max_length=30,default=0)
     ipad_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     ipad_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
@@ -302,7 +399,7 @@ class Ipad(models.Model):
     offer=models.CharField(max_length=3,default=0)
 
 class SamsungPhone(models.Model):
-    class Samsungmodel(models.TextChoices):
+    '''class Samsungmodel(models.TextChoices):
             GalaxyZFlip ="Galaxy Z-Flip"                  
             GalaxyFoldSMF900="Galaxy Fold SM-F900" 
             GalaxyNote10PlusSMN975="Galaxy Note 10+ SM-N975"
@@ -323,15 +420,15 @@ class SamsungPhone(models.Model):
             GalaxyS6EdgeSMG925V="Galaxy S6 Edge SM-G925V"
             GalaxyS20="Galaxy S20"
             GalaxyS20Ultra="Galaxy S20 Ultra" 
-            GalaxyS20Plus="Galaxy S20+"
-    samsung_model=models.CharField(choices=Samsungmodel.choices,max_length=30 ,default=0)
+            GalaxyS20Plus="Galaxy S20+"'''
+    samsung_model=models.CharField(choices=SAMSUNG_MODEL_CHOICES,max_length=30 ,default=0)
     samsung_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     samsung_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
     samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 
 class GooglePhone(models.Model):
-    class Googlemodel(models.TextChoices):
+    '''class Googlemodel(models.TextChoices):
             Pixel4XL='Pixel 4 XL'
             Pixel4="Pixel 4"
             Pixel3XL="Pixel 3 XL"
@@ -339,34 +436,34 @@ class GooglePhone(models.Model):
             Pixel3a="Pixel 3a"
             Pixel3="Pixel 3"
             Pixel2XL="Pixel 2 XL"
-            Pixel2="Pixel 2"  
+            Pixel2="Pixel 2"  '''
 
-    google_model=models.CharField(choices=Googlemodel.choices,max_length=30 ,default=0)
+    google_model=models.CharField(choices=GOOGLE_MODEL_CHOICES,max_length=30 ,default=0)
     google_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     google_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
     google_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 
 class Ipod(models.Model):
-    class Ipod(models.TextChoices):
-            Touch="Touch"
+    '''class Ipod(models.TextChoices):
+            Touch="Touch"'''
 
-    ipod_model=models.CharField(choices=Ipod.choices,max_length=30 ,default=0)
+    ipod_model=models.CharField(choices=IPOD_CHOICES,max_length=30 ,default=0)
     ipod_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     ipod_generation=models.CharField(choices=GENERATION_CHOICES,max_length=30,default=0)
     ipod_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
     ipod_engraving=models.CharField(choices=ENGRAVING_CHOICES,max_length=30,default=None)
     offer=models.CharField(max_length=3,default=0)
 class Iwatch(models.Model):
-    class Iwatch(models.TextChoices):
+    '''class Iwatch(models.TextChoices):
         AppleWatchOriginal="Apple Watch Original"
         AppleWatchSeries1="Apple Watch Series 1"
         AppleWatchSeries2="Apple Watch Series 2"
         AppleWatchSeries3="Apple Watch Series 3"
         AppleWatchSeries4="Apple Watch Series 4"
-        AppleWatchSeries5="Apple Watch Series 5"
+        AppleWatchSeries5="Apple Watch Series 5"'''
 
-    iwatch_model=models.CharField(choices=Iwatch.choices,max_length=30 ,default=0)
+    iwatch_model=models.CharField(choices=IWATCH_MODEL_CHOICES,max_length=30 ,default=0)
     iwatch_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=0,blank=True,null=True)
     iwatch_edition_casing=models.CharField(choices=WATCH_EDITION_CASING_CHOICES,max_length=30,default=0)
     iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0)
