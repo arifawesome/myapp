@@ -79,14 +79,18 @@ CAPACITY_CHOICES=(
         ('16 GB','16 GB'),
         ('32 GB','32 GB'),
         ('64 GB','64 GB'),
-        ('128 GB','128 GB'),
+        ('128 GB SSD','128GB SSD'),
+        ('128 GB ','128 GB '),
         ('256 GB','256 GB'),
+        ('256 GB SSD','256 GB SSD'),
         ('512 GB','512 GB'),
+        ('512 GB SSD','512 GB'),
         ('750 GB','750 GB'),
         ('1 TB','1 TB'),
-        ('2 TB','2 TB'),
-        ('3 TB','3 TB'),
-        ('4 TB','4 TB'),
+        ('1 TB SSD','1 TB SSD'),
+        ('2 TB SSD','2 TB SSD'),
+        ('3 TB SSD','3 TB SSD'),
+        ('4 TB SSD','4 TB SSD'),
         ("not known","Don't Know"),
 )
 IPAD_SCREENSIZE_CHOICES=(
@@ -326,7 +330,7 @@ class Macbook(models.Model):
         Sixteen="16\""
         Seventeen="17\""'''
 
-    Screen_Size=models.CharField(choices=SCREEN_CHOICES,max_length=30,default=0)
+    screen_Size=models.CharField(choices=SCREEN_CHOICES,max_length=30,default=0)
 
     '''class Processor(models.TextChoices):
         oneone="1.1Ghz"
@@ -352,8 +356,8 @@ class Macbook(models.Model):
         threethree="3.3Ghz"
         threefive="3.5Ghz" '''
 
-    Processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=0)
-
+    processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=0)
+    storage_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     '''class Year(models.TextChoices):
         Mid12="Mid 2012"
         Late12="Late 2012"
@@ -382,7 +386,7 @@ class Macbook(models.Model):
         Good="Good"
         Flawless="Flawless"'''
     
-    Cosmetic_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0)
+    cosmetic_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0)
 
     offer=models.CharField(max_length=3,default=0)
 

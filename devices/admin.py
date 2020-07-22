@@ -15,9 +15,9 @@ class IphoneAdmin(ImportExportModelAdmin):
     search_field =('iphone_model', 'capacity', 'carrier',)'''
 
 class MacbookAdmin(admin.ModelAdmin):
-    list_display = ('Macbook_Model','Screen_Size',' Processer','year','Cosmetic_condition','offer')
-    list_filter =('Macbook_Model','Screen_Size',' Processer','year','Cosmetic_condition','offer')
-    search_field =('Macbook_Model','Screen_Size',' Processer','year','Cosmetic_condition','offer')
+    list_display = ('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
+    list_filter =('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
+    search_field =('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
 class IpadAdmin(admin.ModelAdmin):
     list_display = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
     list_filter = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
