@@ -52,7 +52,7 @@ PROCESSOR_CHOICES = (
         ("3.0Ghz","3.0Ghz"),
         ("3.1Ghz","3.1Ghz"),
         ("3.3Ghz","3.3Ghz"),
-       ("3.5Ghz","3.5Ghz"),
+        ("3.5Ghz","3.5Ghz"),
     )
 
 SCREEN_CHOICES = (
@@ -87,6 +87,7 @@ CAPACITY_CHOICES=(
         ('2 TB','2 TB'),
         ('3 TB','3 TB'),
         ('4 TB','4 TB'),
+        ("not known","Don't Know"),
 )
 IPAD_SCREENSIZE_CHOICES=(
     ("9.7\"","9.7\""),
@@ -102,6 +103,7 @@ CARRIER_CHOICES=(
         ("sprint",'Sprint'),
         ("unlocked",'Factory Unlocked'),
         ('other','Other'),
+        ("not known","Don't Know"),
         ('wifi','Wifi'),
         ('wifi Only','Wifi Only'),
         ('wifi + Cellular','wifi + Cellular'),
@@ -167,7 +169,7 @@ MACBOOK_MODEL_CHOICES=(
         ("Macbook Air", "Macbook Air"),
         ("MAcbook Pro","MAcbook Pro"),
 )
-MACBOOK_MODEL_CHOICES=(
+MACBOOK_MODEL_YEAR_CHOICES=(
         ("Mid 2012","Mid 2012"),
         ("Late 2012","Late 2012"),
         ("Early 2013","Early 2013"),
@@ -371,7 +373,7 @@ class Macbook(models.Model):
         Mid19="Mid 2019"
         year2020="2020"'''
 
-    year=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
+    year=models.CharField(choices=MACBOOK_MODEL_YEAR_CHOICES,max_length=30,default=0)
 
     other=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
     '''class CosmeticCondition(models.TextChoices):
