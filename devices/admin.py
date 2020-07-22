@@ -20,9 +20,9 @@ class MacbookAdmin(admin.ModelAdmin):
     search_field =('Macbook_Model','Screen_Size','year','offer',)
 
 class IpadAdmin(admin.ModelAdmin):
-    list_display = ('ipad_model','ipad_generation','ipad_capacity','ipad_screensize','offer')
-    list_filter = ('ipad_model','ipad_generation','ipad_capacity','ipad_screensize','offer')
-    search_field =('ipad_model','ipad_generation','ipad_capacity','ipad_screensize','offer')
+    list_display = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
+    list_filter = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
+    search_field =('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
 
 class SamsungphoneAdmin(admin.ModelAdmin):
     list_display = ('samsung_model','samsung_capacity','samsung_carrier','offer')
