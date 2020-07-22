@@ -162,6 +162,7 @@ IPHONE_MODEL_CHOICES=(
         ('Iphone 8 Plus','Iphone 8 Plus'),
         ('Iphone 8','Iphone 8'),
         ('Iphone 7 Plus','Iphone 7 Plus'),
+        ('Iphone 7 ','Iphone 7'),
         ('Iphone 6S Plus','Iphone 6S Plus'),
         ('Iphone 6s','Iphone 6s'),
         ('Iphone 6','Iphone 6'),
