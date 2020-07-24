@@ -39,9 +39,9 @@ class IpodAdmin(admin.ModelAdmin):
     search_field =('ipod_model','ipod_capacity','offer','ipod_generation')
 
 class IwatchAdmin(admin.ModelAdmin):
-    list_display = ('iwatch_model','iwatch_carrier','iwatch_size','offer')
-    list_filter = ('iwatch_model','iwatch_carrier','iwatch_size','offer')
-    search_field =('iwatch_model','iwatch_carrier','iwatch_size','offer')
+    list_display = ('iwatch_model','iwatch_carrier','iwatch_size','iwatch_edition_casing','iwatch_band','iwatch_condition','iwatch_functional','iwatch_powercord','iwatch_box','offer')
+    list_filter = ('iwatch_model','iwatch_carrier','iwatch_size','iwatch_edition_casing','iwatch_band','iwatch_condition','iwatch_functional','iwatch_powercord','iwatch_box','offer')
+    search_field =('iwatch_model','iwatch_carrier','iwatch_size','iwatch_edition_casing','iwatch_band','iwatch_condition','iwatch_functional','iwatch_powercord','iwatch_box','offer')
 
 class DevicesAdmin(admin.ModelAdmin):
     list_display = ('device','info')

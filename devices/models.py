@@ -111,7 +111,8 @@ CARRIER_CHOICES=(
         ("not known","Don't Know"),
         ('wifi','Wifi'),
         ('wifi Only','Wifi Only'),
-        ('wifi + Cellular','wifi + Cellular'),
+        ('GPS','GPS'),
+        ('GPS + Cellular','GPS + Cellular'),
 )
 OTHER_CHOICES=(
         ("1.1Ghz i3","1.1Ghz i3"),
@@ -123,12 +124,12 @@ OTHER_CHOICES=(
         ('Touch','Touch'),
 )
 WATCH_EDITION_CASING_CHOICES=(
-        ("Sport-Aluminium Case","Sport-Aluminium case"),
+        ("Aluminium Case","Aluminium Case"),
         ("Regular-Steel Case","Regular-Steel Case"),
         ("Hermes-Steel Case","Hermes-Steel Case"),
-        ("Edition-Steel Case",'Edition-Steel Case'),
-        ("Edition-Titanium Case",'Edition-Titanium Case'),
-        ("Edition-Ceramic Case",'Edition-Ceramic Case'),
+        ("Stainless-Steel Case",'Stainless-Steel Case'),
+        ("Titanium Case",'Titanium Case'),
+        ("Ceramic Case",'Ceramic Case'),
         ('Nike+ -Aluminium Case','Nike+ -Aluminium Case'),
         
 )
@@ -141,7 +142,9 @@ WATCHSIZE_CHOICES=(
 )
 
 WATCH_BAND_CHOICES=(
+        ("Yes","Yes"),
         ("Sport Band-Any Color","Sport Band-Any Color"),
+        ("Sport Loop-Any Color","Sport Loop-Any Color"),
         ("Nylon Band-Any Color","Nylon Band-Any Color"),
         ("Milanese Loop","Milanese loop"),
         ("Classic Buckle",'Classic Buckle'),
@@ -150,6 +153,7 @@ WATCH_BAND_CHOICES=(
         ('Hermes Band','Hermes Band'),
         ('Link Bracelet','Link Bracelet'),
         ('Gold Buckle-Any Band','Gold Buckle-Any Band'),
+        ("No Band","No Band"),
         
 )
 IPHONE_MODEL_CHOICES=(
@@ -243,7 +247,7 @@ IPOD_CHOICES=(
     ("Touch","Touch"),
 )
 IWATCH_MODEL_CHOICES=(
-        ("Apple Watch Original","Apple Watch Original"),
+        ("Apple Watch Original(1st Gen)","Apple Watch Original(1st Gen)"),
         ("Apple Watch Series 1","Apple Watch Series 1"),
         ("Apple Watch Series 2","Apple Watch Series 2"),
         ("Apple Watch Series 3","Apple Watch Series 3"),
@@ -486,12 +490,13 @@ class Iwatch(models.Model):
 
     iwatch_model=models.CharField(choices=IWATCH_MODEL_CHOICES,max_length=30 ,default=0)
     iwatch_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=0,blank=True,null=True)
-    iwatch_edition_casing=models.CharField(choices=WATCH_EDITION_CASING_CHOICES,max_length=30,default=0)
-    iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0)
-    iwatch_band=models.CharField(choices=WATCH_BAND_CHOICES,max_length=30,default=0)
-    iwatch_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
-    iwatch_functional=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
-    iwatch_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None)
+    iwatch_edition_casing=models.CharField(choices=WATCH_EDITION_CASING_CHOICES,max_length=30,default=0,blank=True,null=True)
+    iwatch_size=models.CharField(choices=WATCHSIZE_CHOICES,max_length=30,default=0,blank=True,null=True)
+    iwatch_band=models.CharField(choices=WATCH_BAND_CHOICES,max_length=30,default=0,blank=True,null=True)
+    iwatch_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None,blank=True,null=True)
+    iwatch_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    iwatch_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    iwatch_box=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     offer=models.CharField(max_length=3,default=0)
 
 
