@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView,RetrieveAPIView,CreateAPIView,DestroyAPIView,UpdateAPIView
-from devices.models import Iphone,Macbook,Ipad,SamsungPhone,GooglePhone,Ipod,Iwatch,Devices
-from .serializers import IphoneSerializer, MacbookSerializer,IpadSerializer,SamsungPhoneSerializer,GooglePhoneSerializer, IpodSerializer, IwatchSerializer, DevicesSerializer
+from devices.models import Iphone,Macbook,Ipad,SamsungPhone,GooglePhone,Ipod,Iwatch,Devices,Airpods
+from .serializers import IphoneSerializer, MacbookSerializer,IpadSerializer,SamsungPhoneSerializer,GooglePhoneSerializer, IpodSerializer, IwatchSerializer, DevicesSerializer,AirpodsSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
 class IphoneListView(ListAPIView):
@@ -89,4 +89,14 @@ class DevicesListView(ListAPIView):
 class DevicesDetailView(RetrieveAPIView):
     queryset=Devices.objects.all()
     serializer_class=DevicesSerializer
+
+class AirpodsListView(ListAPIView):
+    queryset=Airpods.objects.all()
+    serializer_class=AirpodsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+
+class AirpodsDetailView(RetrieveAPIView):
+    queryset=Airpods.objects.all()
+    serializer_class=AirpodsSerializer
 

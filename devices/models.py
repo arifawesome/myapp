@@ -99,6 +99,7 @@ IPAD_SCREENSIZE_CHOICES=(
     ("10.5\"","10.5\""),
     ("11\"","11\""),
     ("12.9\"","12.9\""),
+    ("not known","Don’t have idea"),
 )
 CARRIER_CHOICES=(
         ("att","AT&T"),
@@ -248,6 +249,19 @@ IWATCH_MODEL_CHOICES=(
         ("Apple Watch Series 3","Apple Watch Series 3"),
         ("Apple Watch Series 4","Apple Watch Series 4"),
         ("Apple Watch Series 5","Apple Watch Series 5"),
+)
+
+AIRPODS_CHOICES=(
+        ("Airpods Pro","Airpods Pro"),
+        ("Airpods 2","Airpods 2"),
+        ("Airpods","Airpods"),
+)
+
+CHARGING_CASE_CHOICES=(
+        ("Wireless charging case","Wireless charging case"),
+        ("Wired charging case","Wired charging case"),
+        ("Don’t have idea","Don’t have idea"),
+
 )
 class Devices(models.Model):
     device = models.CharField(choices=DEVICES_CHOICES,max_length=30,default=0)
@@ -481,8 +495,9 @@ class Iwatch(models.Model):
     offer=models.CharField(max_length=3,default=0)
 
 
-class SellBulk(models.Model):
-    device=models.CharField(max_length=30,default=0,blank=True,null=True)
-    quantity=models.CharField(max_length=3,default=0,blank=True,null=True)
-    description=models.CharField(max_length=300,default=0,blank=True,null=True)
-    contact_info=models.CharField(max_length=3,default=0,blank=True,null=True)
+class Airpods(models.Model):
+    airpods_model=models.CharField(choices=AIRPODS_CHOICES,max_length=30,default=0,blank=True,null=True)
+    charging_case=models.CharField(choices=CHARGING_CASE_CHOICES,max_length=30,default=0,blank=True,null=True)
+    airpods_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0,blank=True,null=True)
+    offer=models.CharField(max_length=3,default=0)
+

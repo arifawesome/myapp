@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch, Devices,SellBulk
+from .models import Iphone,Macbook,Ipad, SamsungPhone, GooglePhone,Ipod,Iwatch, Devices, Airpods
 from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Iphone)
@@ -15,9 +15,9 @@ class IphoneAdmin(ImportExportModelAdmin):
     search_field =('iphone_model', 'capacity', 'carrier',)'''
 
 class MacbookAdmin(admin.ModelAdmin):
-    list_display = ('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
-    list_filter =('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
-    search_field =('Macbook_Model','screen_Size','processer','year','cosmetic_condition','offer')
+    list_display = ('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
+    list_filter =('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
+    search_field =('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
 class IpadAdmin(admin.ModelAdmin):
     list_display = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
     list_filter = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
@@ -46,8 +46,11 @@ class IwatchAdmin(admin.ModelAdmin):
 class DevicesAdmin(admin.ModelAdmin):
     list_display = ('device','info')
 
-class SellBulkAdmin(admin.ModelAdmin):
-    list_display = ('device','quantity', 'contact_info')
+class AirpodsAdmin(admin.ModelAdmin):
+    list_display = ('airpods_model','charging_case', 'airpods_condition', 'offer')
+    list_filter = ('airpods_model','charging_case', 'airpods_condition', 'offer')
+    search_field =('airpods_model','charging_case', 'airpods_condition', 'offer')
+
 
 admin.site.register(Macbook, MacbookAdmin)
 admin.site.register(Ipad, IpadAdmin)
@@ -56,5 +59,5 @@ admin.site.register(GooglePhone, GooglephoneAdmin)
 admin.site.register(Ipod, IpodAdmin)
 admin.site.register(Iwatch, IwatchAdmin)
 admin.site.register(Devices, DevicesAdmin)
-admin.site.register(SellBulk, SellBulkAdmin)
+admin.site.register(Airpods, AirpodsAdmin)
 
