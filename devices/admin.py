@@ -24,9 +24,9 @@ class IpadAdmin(admin.ModelAdmin):
     search_field =('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
 
 class SamsungphoneAdmin(admin.ModelAdmin):
-    list_display = ('samsung_model','samsung_capacity','samsung_carrier','offer')
-    list_filter = ('samsung_model','samsung_capacity','samsung_carrier','offer')
-    search_field =('samsung_model','samsung_capacity','samsung_carrier','offer')
+    list_display = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional',' samsung_powercord','samsung_box','samsung_headset','samsung_''offer')
+    list_filter = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional',' samsung_powercord','samsung_box','samsung_headset','samsung_''offer')
+    search_field =('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional',' samsung_powercord','samsung_box','samsung_headset','samsung_''offer')
 
 class GooglephoneAdmin(admin.ModelAdmin):
     list_display = ('google_model','google_capacity','google_carrier','offer')

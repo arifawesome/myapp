@@ -113,6 +113,10 @@ CARRIER_CHOICES=(
         ('wifi Only','Wifi Only'),
         ('GPS','GPS'),
         ('GPS + Cellular','GPS + Cellular'),
+        ('U.S Cellular','U.S Cellular'),
+        ('Xfinity','Xfinity'),
+        ('Cricket','Cricket'),
+
 )
 OTHER_CHOICES=(
         ("1.1Ghz i3","1.1Ghz i3"),
@@ -211,27 +215,32 @@ IPAD_MODEL_CHOICES=(
             ("iPad","iPad"),
 )
 SAMSUNG_MODEL_CHOICES=(
+            ("Galaxy Fold","Galaxy Fold" ), 
             ("Galaxy Z-Flip","Galaxy Z-Flip" ),              
             ("Galaxy Fold SM-F900","Galaxy Fold SM-F900"),
-            ("Galaxy Note 10+ SM-N975","Galaxy Note 10+ SM-N975"),
-            ("Galaxy Note 10 SM-N970","Galaxy Note 10 SM-N970"),
+            ("Galaxy Note 10+ 5G","Galaxy Note 10+ 5G"),
+            ("Galaxy Note 10+","Galaxy Note 10+"),
+            ("Galaxy Note 10","Galaxy Note 10"),
+            ("Galaxy Note 9","Galaxy Note 9"),
+            ("Galaxy Note 8","Galaxy Note 8"),
             ("Galaxy S10+","Galaxy S10+"),
             ("Galaxy S10","Galaxy S10"),
+            ("Galaxy S10 5G","Galaxy S10 5G"),
+            ("Galaxy S10 Lite","Galaxy S10 Lite"),
             ("Galaxy S10e","Galaxy S10e"),
-            ("Galaxy Note 9 SM-N960","Galaxy Note 9 SM-N960"),
-            ("Galaxy S9+ SM-G965A","Galaxy S9+ SM-G965A"),
-            ("Galaxy S9 SM-G960A","Galaxy S9 SM-G960A"),
-            ("Galaxy S8+ SM-G955A","Galaxy S8+ SM-G955A"),
-            ("GalaxyS8SMG950A","GalaxyS8SMG950A"),
-            ("Galaxy S8 Active SM-G892A","Galaxy S8 Active SM-G892A"),
-            ("Galaxy Note 8 SM-N950A","Galaxy Note 8 SM-N950A"),
-            ("Galaxy S7 edge SM-G935A","Galaxy S7 edge SM-G935A"), 
-            ("Galaxy S7 SM-G930A","Galaxy S7 SM-G930A"),
-           ("Galaxy S6 edge+ SM-G928","Galaxy S6 edge+SM-G928"),
-           ("Galaxy S6 Edge SM-G925V","Galaxy S6 Edge SM-G925V"),
-            ("Galaxy S20","Galaxy S20"),
-            ("Galaxy S20 Ultra","Galaxy S20 Ultra" ),
-            ("Galaxy S20+","Galaxy S20+"),
+            ("Galaxy S9+","Galaxy S9+"),
+            ("Galaxy S9","Galaxy S9"),
+            ("Galaxy S8+","Galaxy S8+"),
+            ("Galaxy S8 Active","Galaxy S8 Active"),
+            ("Galaxy S8","Galaxy S8"),
+            ("Galaxy S7 Edge","Galaxy S7 Edge"), 
+            ("Galaxy S7","Galaxy S7"),
+           ("Galaxy S6 Edge+","Galaxy S6 Edge+"),
+           ("Galaxy S6 Edge","Galaxy S6 Edge"),
+           ("Galaxy S6","Galaxy S6"),
+            ("Galaxy S20 5G","Galaxy S20 5G"),
+            ("Galaxy S20 Ultra 5G","Galaxy S20 Ultra 5G" ),
+            ("Galaxy S20+ 5G","Galaxy S20+ 5G"),
 )
 GOOGLE_MODEL_CHOICES=(
             ('Pixel 4 XL','Pixel 4 XL'),
@@ -298,7 +307,7 @@ class Iphone(models.Model):
         unlocked='Factory Unlocked'
         other='Other'
         wifi='Wifi'''
-    carrier =models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    carrier = models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
 
     '''class Capacity(models.Choices):
         sixteen='16 GB'
@@ -449,7 +458,12 @@ class SamsungPhone(models.Model):
     samsung_model=models.CharField(choices=SAMSUNG_MODEL_CHOICES,max_length=30 ,default=0)
     samsung_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
     samsung_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    samsung_isunlock=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    samsung_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    samsung_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    samsung_box=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    samsung_headset=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     offer=models.CharField(max_length=3,default=0)
 
 class GooglePhone(models.Model):
