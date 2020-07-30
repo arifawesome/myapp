@@ -416,7 +416,7 @@ class Macbook(models.Model):
     
     cosmetic_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0)
 
-    offer=models.CharField(max_length=3,default=0)
+    offer=models.CharField(max_length=4,default=0)
 
 class Ipad(models.Model):
     '''class Ipadmodel(models.TextChoices):
@@ -430,7 +430,7 @@ class Ipad(models.Model):
     ipad_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
     ipad_screensize=models.CharField(choices=IPAD_SCREENSIZE_CHOICES,max_length=30,default=None,blank=True,null=True)
     ipad_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
-    offer=models.CharField(max_length=3,default=0)
+    offer=models.CharField(max_length=4,default=0)
 
 class SamsungPhone(models.Model):
     '''class Samsungmodel(models.TextChoices):
@@ -456,15 +456,15 @@ class SamsungPhone(models.Model):
             GalaxyS20Ultra="Galaxy S20 Ultra" 
             GalaxyS20Plus="Galaxy S20+"'''
     samsung_model=models.CharField(choices=SAMSUNG_MODEL_CHOICES,max_length=30 ,default=0)
-    samsung_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
-    samsung_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
+    samsung_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
+    samsung_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None,blank=True,null=True)
     samsung_isunlock=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
-    samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
+    samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_box=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_headset=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
-    offer=models.CharField(max_length=3,default=0)
+    offer=models.CharField(max_length=4,default=0)
 
 class GooglePhone(models.Model):
     '''class Googlemodel(models.TextChoices):
@@ -478,10 +478,14 @@ class GooglePhone(models.Model):
             Pixel2="Pixel 2"  '''
 
     google_model=models.CharField(choices=GOOGLE_MODEL_CHOICES,max_length=30 ,default=0)
-    google_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
-    google_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None)
-    google_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None)
-    offer=models.CharField(max_length=3,default=0)
+    google_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
+    google_carrier=models.CharField(choices=CARRIER_CHOICES,max_length=30,default=None,blank=True,null=True)
+    google_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None,blank=True,null=True)
+    google_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    google_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    google_box=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    google_headset=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    offer=models.CharField(max_length=4,default=0)
 
 class Ipod(models.Model):
     '''class Ipod(models.TextChoices):
