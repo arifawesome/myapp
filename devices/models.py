@@ -461,6 +461,7 @@ class SamsungPhone(models.Model):
     samsung_isunlock=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_condition=models.CharField(choices=CONDITION_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    samsung_screenburn=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_box=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     samsung_headset=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
