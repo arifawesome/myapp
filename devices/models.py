@@ -75,7 +75,8 @@ GENERATION_CHOICES = (
 )
 
 CAPACITY_CHOICES=(
-
+        ('4 GB','4 GB'),
+        ('8 GB','8 GB'),
         ('16 GB','16 GB'),
         ('32 GB','32 GB'),
         ('64 GB','64 GB'),
@@ -349,7 +350,9 @@ class Macbook(models.Model):
         MBA = "Macbook Air"
         MBP ="MAcbook Pro"'''
 
-    Macbook_Model=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
+    macbook_model=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
+    screen_size=models.CharField(choices=SCREEN_CHOICES,max_length=30,default=None,blank=True,null=True)
+    year=models.CharField(choices=MACBOOK_MODEL_YEAR_CHOICES,max_length=30,default=None,blank=True,null=True)
 
     '''class ScreenSize(models.TextChoices):
         Eleven="11\""
@@ -358,7 +361,7 @@ class Macbook(models.Model):
         Sixteen="16\""
         Seventeen="17\""'''
 
-    screen_Size=models.CharField(choices=SCREEN_CHOICES,max_length=30,default=0)
+    
 
     '''class Processor(models.TextChoices):
         oneone="1.1Ghz"
@@ -384,8 +387,11 @@ class Macbook(models.Model):
         threethree="3.3Ghz"
         threefive="3.5Ghz" '''
 
-    processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=0)
-    storage_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=0)
+    processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=None,blank=True,null=True)
+    cosmetic_condition=models.CharField(choices=CONDITION_CHOICES,max_length=30,default=None,blank=True,null=True)
+
+    storage_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
+    ram_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
     '''class Year(models.TextChoices):
         Mid12="Mid 2012"
         Late12="Late 2012"
@@ -404,9 +410,8 @@ class Macbook(models.Model):
         year2019="2019"
         Mid19="Mid 2019"
         year2020="2020"'''
-
-    year=models.CharField(choices=MACBOOK_MODEL_YEAR_CHOICES,max_length=30,default=0)
-
+    macbook_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
+    macbook_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     other=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
     '''class CosmeticCondition(models.TextChoices):
         Broken="Broken"
@@ -414,7 +419,6 @@ class Macbook(models.Model):
         Good="Good"
         Flawless="Flawless"'''
     
-    cosmetic_condition=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=0)
 
     offer=models.CharField(max_length=4,default=0)
 

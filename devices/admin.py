@@ -15,23 +15,23 @@ class IphoneAdmin(ImportExportModelAdmin):
     search_field =('iphone_model', 'capacity', 'carrier',)'''
 
 class MacbookAdmin(admin.ModelAdmin):
-    list_display = ('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
-    list_filter =('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
-    search_field =('Macbook_Model','screen_Size','processer','storage_capacity','year','cosmetic_condition','offer')
+    list_display = ('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
+    list_filter =('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
+    search_field =('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
 class IpadAdmin(admin.ModelAdmin):
     list_display = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
     list_filter = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
     search_field =('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
 
 class SamsungphoneAdmin(admin.ModelAdmin):
-    list_display = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_powercord','samsung_box','samsung_headset','offer')
-    list_filter = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_powercord','samsung_box','samsung_headset','offer')
-    search_field =('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_powercord','samsung_box','samsung_headset','offer')
+    list_display = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_screenburn','samsung_powercord','samsung_box','samsung_headset','offer')
+    list_filter = ('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_screenburn','samsung_powercord','samsung_box','samsung_headset','offer')
+    search_field =('samsung_model','samsung_capacity','samsung_carrier','samsung_isunlock','samsung_condition','samsung_functional','samsung_screenburn','samsung_powercord','samsung_box','samsung_headset','offer')
 
 class GooglephoneAdmin(admin.ModelAdmin):
-    list_display = ('google_model','google_capacity','google_carrier','google_functional','google_powercord','google_box','google_headset','offer')
-    list_filter = ('google_model','google_capacity','google_carrier','google_functional','google_powercord','google_box','google_headset','offer')
-    search_field =('google_model','google_capacity','google_carrier','google_functional','google_powercord','google_box','google_headset','offer')
+    list_display = ('google_model','google_capacity','google_carrier','google_condition','google_functional','google_powercord','google_box','google_headset','offer')
+    list_filter = ('google_model','google_capacity','google_carrier','google_condition','google_functional','google_powercord','google_box','google_headset','offer')
+    search_field =('google_model','google_capacity','google_carrier','google_condition','google_functional','google_powercord','google_box','google_headset','offer')
 class IpodAdmin(admin.ModelAdmin):
     list_display = ('ipod_model','ipod_capacity','offer','ipod_generation')
     list_filter = ('ipod_model','ipod_capacity','offer','ipod_generation')
