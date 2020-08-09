@@ -30,9 +30,20 @@ CONDITION_CHOICES = (
     )
 PROCESSOR_CHOICES = (
        ("1.1Ghz","1.1Ghz"),
-       ("1.1Ghz i3","1.1Ghz i3"),
-        ("1.1Ghz i5","1.1Ghz i5"),
+       ("M 1.1Ghz","M 1.1Ghz"),
+       ("M 1.2Ghz","M 1.2Ghz"),
+       ("M 1.3Ghz","M 1.3Ghz"),
+        ("m3 1.1Ghz","m3 1.1Ghz"),
+       ("m5 1.2Ghz","m5 1.2Ghz"),
+       ("m7 1.3Ghz","m7 1.3Ghz"),
+       ("m3 1.2Ghz","m3 1.2Ghz"),
+        ("i5 1.3Ghz ","i5 1.3Ghz"),
+        ("i7 1.4Ghz","i7 1.4Ghz"),
+        ("i5","i5"),
+        ("i7","i7"),
         ("1.2Ghz","1.2Ghz"),
+        ("1.3 i5 Ghz","1.3 i5Ghz"),
+        ("1.4Ghz","1.4Ghz"),
         ("1.3Ghz","1.3Ghz"),
         ("1.4Ghz","1.4Ghz"),
         ("1.6Ghz","1.6Ghz"),
@@ -127,6 +138,16 @@ OTHER_CHOICES=(
         ("No Retina",'No Retina'),
         ('Touch Vega','Touch Vega'),
         ('Touch','Touch'),
+        ("AMD Radeon R9 M370X Graphics","AMD Radeon R9 M370X Graphics"),
+        ("Nvidia Geforce GT 750 Graphics","Nvidia Geforce GT 750 Graphics"),
+        ('AMD Radeon Pro 555X','AMD Radeon Pro 555X'),
+        ('AMD Radeon Pro 560X','AMD Radeon Pro 560X'),
+        ('AMD Radeon Pro Vega 16','AMD Radeon Pro Vega 16'),
+        ('AMD Radeon Pro Vega 20','AMD Radeon Pro Vega 20'),
+        ('AMD Radeon Pro 5300M w/4GB','AMD Radeon Pro 5300M w/4GB'),
+        ('AMD Radeon Pro 5500M w/4GB','AMD Radeon Pro 5500M w/4GB'),
+        ('AMD Radeon Pro 5500M w/8GB','AMD Radeon Pro 5500M w/8GB'),
+        ('AMD Radeon Pro 5600M w/8GB HBM2','AMD Radeon Pro 5600M w/8GB HBM2'),
 )
 WATCH_EDITION_CASING_CHOICES=(
         ("Aluminium Case","Aluminium Case"),
@@ -196,6 +217,8 @@ MACBOOK_MODEL_YEAR_CHOICES=(
         ("Mid 2015","Mid 2015"),
         ("Early 2016","Early 2016"),
         ("Late 2016","Late 2016"),
+        ("2016","2016"),
+        ("2017","2017"),
         ("Mid 2017","Mid 2017"),
         ("Mid 2018","Mid 2018"),
         ("Late 2018","Late 2018"),
@@ -204,9 +227,10 @@ MACBOOK_MODEL_YEAR_CHOICES=(
         ("2020","2020"),
 )
 COSMETIC_CONDITION_CHOICES=(
+        ("Poor","Poor"),
         ("Broken","Broken"),
         ("Fair","Fair"),
-        ("GooD","Good"),
+        ("Good","Good"),
         ("Flawless","Flawless"),
 )
 IPAD_MODEL_CHOICES=(
@@ -353,6 +377,7 @@ class Macbook(models.Model):
     macbook_model=models.CharField(choices=MACBOOK_MODEL_CHOICES,max_length=30,default=0)
     screen_size=models.CharField(choices=SCREEN_CHOICES,max_length=30,default=None,blank=True,null=True)
     year=models.CharField(choices=MACBOOK_MODEL_YEAR_CHOICES,max_length=30,default=None,blank=True,null=True)
+    touch=models.CharField(choices=ENGRAVING_CHOICES,max_length=30,default=None,blank=True,null=True)
 
     '''class ScreenSize(models.TextChoices):
         Eleven="11\""
@@ -389,9 +414,9 @@ class Macbook(models.Model):
 
     processer=models.CharField(choices=PROCESSOR_CHOICES,max_length=30,default=None,blank=True,null=True)
     cosmetic_condition=models.CharField(choices=CONDITION_CHOICES,max_length=30,default=None,blank=True,null=True)
-
-    storage_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
     ram_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
+    storage_capacity=models.CharField(choices=CAPACITY_CHOICES,max_length=30,default=None,blank=True,null=True)
+    battery_health=models.CharField(choices=COSMETIC_CONDITION_CHOICES,max_length=30,default=None,blank=True,null=True)
     '''class Year(models.TextChoices):
         Mid12="Mid 2012"
         Late12="Late 2012"
@@ -412,7 +437,7 @@ class Macbook(models.Model):
         year2020="2020"'''
     macbook_functional=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
     macbook_powercord=models.CharField(choices=ENGRAVING_CHOICES, max_length=30,default=None,blank=True,null=True)
-    other=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
+    graphics_card=models.CharField(choices=OTHER_CHOICES,max_length=30,default=0,null=True,blank=True)
     '''class CosmeticCondition(models.TextChoices):
         Broken="Broken"
         Fair="Fair"

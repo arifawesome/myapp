@@ -15,9 +15,9 @@ class IphoneAdmin(ImportExportModelAdmin):
     search_field =('iphone_model', 'capacity', 'carrier',)'''
 
 class MacbookAdmin(admin.ModelAdmin):
-    list_display = ('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
-    list_filter =('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
-    search_field =('macbook_model','screen_size','year','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','macbook_powercord','offer')
+    list_display = ('macbook_model','screen_size','year','touch','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','battery_health','macbook_powercord','graphics_card','offer')
+    list_filter =('macbook_model','screen_size','year','touch','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','battery_health','macbook_powercord','graphics_card','offer')
+    search_field =('macbook_model','screen_size','year','touch','processer','storage_capacity','ram_capacity','cosmetic_condition','macbook_functional','battery_health','macbook_powercord','graphics_card','offer')
 class IpadAdmin(admin.ModelAdmin):
     list_display = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
     list_filter = ('ipad_model','ipad_generation','ipad_carrier','ipad_capacity','ipad_screensize','ipad_condition','offer')
