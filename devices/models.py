@@ -99,6 +99,7 @@ CAPACITY_CHOICES=(
         ('512 GB SSD','512 GB'),
         ('750 GB','750 GB'),
         ('1 TB','1 TB'),
+        ('1.5 TB','1.5 TB'),
         ('1 TB SSD','1 TB SSD'),
         ('2 TB SSD','2 TB SSD'),
         ('3 TB SSD','3 TB SSD'),
@@ -224,6 +225,7 @@ MACBOOK_MODEL_YEAR_CHOICES=(
         ("Late 2018","Late 2018"),
         ("2019","2019"),
         ("Mid 2019","Mid 2019"),
+        ("2018","2018"),
         ("2020","2020"),
 )
 COSMETIC_CONDITION_CHOICES=(
