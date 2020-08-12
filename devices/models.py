@@ -209,7 +209,7 @@ IPHONE_MODEL_CHOICES=(
 MACBOOK_MODEL_CHOICES=(
         ("Macbook","Macbook"),
         ("Macbook Air", "Macbook Air"),
-        ("MAcbook Pro","MAcbook Pro"),
+        ("Macbook Pro","Macbook Pro"),
 )
 MACBOOK_MODEL_YEAR_CHOICES=(
         ("Mid 2012","Mid 2012"),
