@@ -29,6 +29,7 @@ CONDITION_CHOICES = (
         ("100%", "100%"),
     )
 PROCESSOR_CHOICES = (
+       ("Core 2 Duo","Core 2 Duo"),
        ("1.1Ghz","1.1Ghz"),
        ("M 1.1Ghz","M 1.1Ghz"),
        ("M 1.2Ghz","M 1.2Ghz"),
@@ -86,17 +87,21 @@ GENERATION_CHOICES = (
 )
 
 CAPACITY_CHOICES=(
+        ('2 GB','2 GB'),
         ('4 GB','4 GB'),
         ('8 GB','8 GB'),
         ('16 GB','16 GB'),
         ('32 GB','32 GB'),
         ('64 GB','64 GB'),
+        ('64 GB SSD','64 GB SSD'),
+        ('80 GB','80 GB'),
+        ('120 GB ','12O GB '),
         ('128 GB SSD','128GB SSD'),
         ('128 GB ','128 GB '),
         ('256 GB','256 GB'),
         ('256 GB SSD','256 GB SSD'),
         ('512 GB','512 GB'),
-        ('512 GB SSD','512 GB'),
+        ('512 GB SSD','512 GB SSD'),
         ('750 GB','750 GB'),
         ('1 TB','1 TB'),
         ('1.5 TB','1.5 TB'),
