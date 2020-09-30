@@ -12,3 +12,4 @@ class InquererListView(generics.ListCreateAPIView):
     
     queryset = Inquerer.objects.all()
     serializer_class = InquererSerializer
+    #send_email_confirmation(user=self.request.user, modified=instance)
