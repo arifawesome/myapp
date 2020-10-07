@@ -258,8 +258,8 @@ class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
     phoneNumber=serializers.CharField(max_length=20, min_length=None, allow_blank=True, trim_whitespace=True)
 
     class Meta:
-        model = UserTradeInfo
-        fields = ['id','firstName','lastName','email','phoneNumber''addressType','addressLine1','addressLine2','city','state','zipcode','userdevices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        model = GuestUserTradeInfo
+        fields = ['id','firstName','lastName','email','phoneNumber','addressType','addressLine1','addressLine2','city','state','zipcode','userdevices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('userdevices')
