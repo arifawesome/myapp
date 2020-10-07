@@ -20,7 +20,8 @@ class UserInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
-    #filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -29,13 +30,14 @@ class UserInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
-    lookup_field='user_id'
+    #lookup_field='id'
 
 class UserAddressList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserAddress.objects.all()
     serializer_class = UserAddressSerializer
-    #filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -44,28 +46,30 @@ class UserAddressDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserAddress.objects.all()
     serializer_class = UserAddressSerializer
-    lookup_field='user_id'
+    #lookup_field='user_id'
 
 class UserDeviceInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserDevicesInfo.objects.all()
     serializer_class = UserDeviceInfoSerializer
-    #filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class UserDeviceInfoDetail(generics.RetrieveUpdateDestroyAPIView):
-    #permission_classes = [permissions.IsAuthenticated,IsOwner]
+    permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserDevicesInfo.objects.all()
     serializer_class = UserDeviceInfoSerializer
-    #lookup_field='user_id'
+    #lookup_field='id'
 
 class UserTradeInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserTradeInfo.objects.all()
     serializer_class = UserTradeInfoSerializer
     filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -74,7 +78,7 @@ class UserTradeInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserTradeInfo.objects.all()
     serializer_class = UserTradeInfoSerializer
-    lookup_field='user_id'
+    #lookup_field='id'
 
 
 
@@ -115,6 +119,7 @@ class GuestUserTradeInfoList(generics.ListCreateAPIView):
     queryset = GuestUserTradeInfo.objects.all()
     serializer_class = GuestUserTradeInfoSerializer
     filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
     
     def perform_create(self, serializer):
         serializer.save()
@@ -123,7 +128,7 @@ class GuestUserTradeInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = GuestUserTradeInfo.objects.all()
     serializer_class = GuestUserTradeInfoSerializer
-    #lookup_field='user_id'
+    #lookup_field='id'
 
 
 '''class GuestUserAddressList(generics.ListCreateAPIView):
@@ -145,7 +150,8 @@ class GuestUserDeviceInfoList(generics.ListCreateAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = GuestUserDevicesInfo.objects.all()
     serializer_class = GuestUserDeviceInfoSerializer
-    #filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
 
     def perform_create(self, serializer):
         serializer.save()
@@ -153,7 +159,7 @@ class GuestUserDeviceInfoList(generics.ListCreateAPIView):
 class GuestUserDeviceInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = GuestUserDeviceInfoSerializer
-    #lookup_field='user_id'
+    #lookup_field='id'
 
 '''class GuestUserOrderList(generics.ListCreateAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]

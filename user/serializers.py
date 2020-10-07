@@ -10,7 +10,7 @@ class UserAddressSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
     class Meta:
         model= UserAddress
-        fields=['user','addressType','addressLine1','addressLine2','city','state','zipcode','primaryAddress']
+        fields=['id','user','addressType','addressLine1','addressLine2','city','state','zipcode','primaryAddress']
 
 class UserInfoSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
@@ -18,7 +18,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
     phoneNumber=serializers.CharField(max_length=20, min_length=None, allow_blank=True, trim_whitespace=True)
     class Meta:
         model = UserInfo
-        fields = ['user_id','user','secondary_email','phoneNumber']
+        fields = ['id','user_id','user','secondary_email','phoneNumber']
 
     '''def create(self, validated_data):
         addresses_data = validated_data.pop('useraddress')
@@ -50,17 +50,17 @@ class UserDeviceInfoSerializer(serializers.ModelSerializer):
     trade=serializers.ReadOnlyField(source='usertradeinfo.orderNo')
     class Meta:
         model=UserDevicesInfo
-        fields=['trade','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+        fields=['id','trade','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
 
 class UserTradeInfoSerializer(serializers.ModelSerializer):
     
-    #address=serializers.ReadOnlyField(source='address.addressLine1')
+    address=UserAddressSerializer
     user=serializers.ReadOnlyField(source='user.username')
     devices=UserDeviceInfoSerializer(many=True)
 
     class Meta:
         model = UserTradeInfo
-        fields = ['user','devices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['id','user','devices','address','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')
@@ -248,7 +248,7 @@ class GuestUserInfoSerializer(serializers.ModelSerializer):
 class GuestUserDeviceInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model=GuestUserDevicesInfo
-        fields=['deviceNo','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+        fields=['id','deviceNo','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
 
 class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
     userdevices=GuestUserDeviceInfoSerializer(many=True)
@@ -259,7 +259,7 @@ class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserTradeInfo
-        fields = ['firstName','lastName','email','phoneNumber','userdevices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['id','firstName','lastName','email','phoneNumber''addressType','addressLine1','addressLine2','city','state','zipcode','userdevices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('userdevices')
