@@ -12,10 +12,10 @@ DEVICE_REVIEW_CHOICES=(
     ('Requoted','Requoted'),
 )
 PAYMENT_CHOICES=(
-    ('check','check' ),
+    ('Venmo','Venmo' ),
     ('Paypal','Paypal' ),
-    ('Amazon Gift Card', 'Amazon Gift Card' ),
-    ('Cash','Cash' ),
+    ('Zelle','Zelle' ),
+    ('CashApp','CashApp'),
  )
 SHIPPING_CHOICES=(
     ('local-pickup','local-pickup' ),
@@ -41,6 +41,8 @@ class UserInfo(models.Model):
 
 class UserAddress(models.Model):
     user=models.ForeignKey('auth.User', related_name='useraddress', on_delete=models.CASCADE)
+    firstName=models.CharField(max_length=30,null=True)
+    lastName=models.CharField(max_length=30,null=True)
     addressType=models.CharField(max_length=30,null=True)
     addressLine1=models.CharField(max_length=30,null=True)
     addressLine2=models.CharField(max_length=30,null=True)
@@ -53,6 +55,16 @@ class UserAddress(models.Model):
     def __str__(self):
         return str(self.user)+ " " +str(self.addressType)+ " " +str(self.addressLine1)+ " " +str(self.addressLine2)+ " "+str(self.city)+ " "+str(self.state)+ " "+str(self.zipcode)+ " "+str(self.primaryAddress)
 
+class UserPaymentInfo(models.Model):
+    user=models.ForeignKey('auth.User',related_name='userpaymentmethod',on_delete=models.CASCADE)
+    paymentMethod=models.CharField(choices=PAYMENT_CHOICES,max_length=30,null=True,blank=True)
+    name=models.CharField(max_length=30,blank=True,null=True)
+    username=models.CharField(max_length=30,blank=True,null=True)
+    Phone=models.CharField(max_length=30,blank=True,null=True)
+    email=models.CharField(max_length=30,blank=True,null=True)
+
+    def __str__(self):
+        return str(self.user)+ " " +str(self.paymentMethod)+ " " +str(self.username)
 '''class UserOrder(models.Model):
     user=models.ForeignKey('auth.User', related_name='userorder', on_delete=models.CASCADE)
 
@@ -72,7 +84,7 @@ class UserTradeInfo(models.Model):
     deviceAccepted=models.CharField(choices=ACCEPTANCE_CHOICES,max_length=30,null=True,default=None,blank=True)
     deviceAcceptanceComment=models.CharField(max_length=300,blank=True,null=True)
     totalPayment=models.CharField(max_length=30,blank=True,null=True)
-    paymentMethod=models.CharField(choices=PAYMENT_CHOICES,max_length=30,null=True,blank=True)
+    paymentMethod=models.ForeignKey(UserPaymentInfo,related_name='paymentmethod',on_delete=models.CASCADE, null=True, blank=True)
     paymentReferenceNo=models.CharField(max_length=30,blank=True,null=True)
     deviceShippingMethod=models.CharField(choices=SHIPPING_CHOICES,max_length=30,null=True)
     deviceTrackingInbound=models.CharField(max_length=30,blank=True,null=True)
@@ -87,6 +99,10 @@ class UserDevicesInfo(models.Model):
     deviceNo=models.CharField(max_length=30,blank=True,null=True)
     deviceType=models.CharField(max_length=30,blank=True,null=True)
     deviceModel=models.CharField(max_length=30,blank=True,null=True)
+    deviceSerial=models.CharField(max_length=30,blank=True,null=True)
+    deviceImei=models.CharField(max_length=30,blank=True,null=True)
+    deviceImei2=models.CharField(max_length=30,blank=True,null=True)
+    deviceMacAddress=models.CharField(max_length=30,blank=True,null=True)
     deviceCapacity=models.CharField(max_length=30,blank=True,null=True)
     deviceCarrier=models.CharField(max_length=30,blank=True,null=True)
     deviceCondition=models.CharField(max_length=30,blank=True,null=True)
@@ -98,6 +114,10 @@ class UserDevicesInfo(models.Model):
     deviceEdition=models.CharField(max_length=30,blank=True,null=True)
     deviceBand=models.CharField(max_length=30,blank=True,null=True)
     deviceEngraving=models.CharField(max_length=30,blank=True,null=True)
+    #deviceImages=models.ImageField(upload_to='Deviceimg',blank=True,null=True)
+    
+    #Guest user models
+
 
 
     #Guest user models
@@ -123,18 +143,27 @@ class GuestUserTradeInfo(models.Model):
     deviceAccepted=models.CharField(choices=ACCEPTANCE_CHOICES,max_length=30,null=True,default=None,blank=True)
     deviceAcceptanceComment=models.CharField(max_length=300,blank=True,null=True)
     paymentMethod=models.CharField(choices=PAYMENT_CHOICES,max_length=30,null=True,blank=True)
+    payment_name=models.CharField(max_length=30,blank=True,null=True)
+    paymentUsername=models.CharField(max_length=30,blank=True,null=True)
+    paymentPhone=models.CharField(max_length=30,blank=True,null=True)
+    paymentEmail=models.CharField(max_length=30,blank=True,null=True)
     paymentReferenceNo=models.CharField(max_length=30,blank=True,null=True)
     totalPayment=models.CharField(max_length=30,blank=True,null=True)
     deviceShippingMethod=models.CharField(choices=SHIPPING_CHOICES,max_length=30,null=True)
     deviceTrackingInbound=models.CharField(max_length=30,blank=True,null=True)
     deviceTrackingOutbound=models.CharField(max_length=30,blank=True,null=True)
+    #deviceImages=models.ImageField(upload_to='Deviceimages',blank=True,null=True)
 
 
 class GuestUserDevicesInfo(models.Model):
-    trade=models.ForeignKey(GuestUserTradeInfo,related_name='userdevices',on_delete=models.CASCADE)
+    trade=models.ForeignKey(GuestUserTradeInfo,related_name='devices',on_delete=models.CASCADE)
     deviceNo=models.CharField(max_length=30,blank=True,null=True)
     deviceType=models.CharField(max_length=30,blank=True,null=True)
     deviceModel=models.CharField(max_length=30,blank=True,null=True)
+    deviceSerial=models.CharField(max_length=30,blank=True,null=True)
+    deviceImei=models.CharField(max_length=30,blank=True,null=True)
+    deviceImei2=models.CharField(max_length=30,blank=True,null=True)
+    deviceMacAddress=models.CharField(max_length=30,blank=True,null=True)
     deviceCapacity=models.CharField(max_length=30,blank=True,null=True)
     deviceCarrier=models.CharField(max_length=30,blank=True,null=True)
     deviceCondition=models.CharField(max_length=30,blank=True,null=True)
@@ -146,5 +175,5 @@ class GuestUserDevicesInfo(models.Model):
     deviceEdition=models.CharField(max_length=30,blank=True,null=True)
     deviceBand=models.CharField(max_length=30,blank=True,null=True)
     deviceEngraving=models.CharField(max_length=30,blank=True,null=True)
+    deviceImages=models.ImageField(upload_to='Deviceimg',blank=True,null=True)
     
-

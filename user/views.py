@@ -2,9 +2,10 @@ from django.shortcuts import render
 from rest_framework import status
 from .permission import IsOwner
 from django.views.decorators.csrf import csrf_exempt
-from .models import UserInfo,UserTradeInfo,UserDevicesInfo,UserAddress,GuestUserDevicesInfo,GuestUserTradeInfo
+from .models import UserInfo,UserTradeInfo,UserDevicesInfo,UserAddress,GuestUserDevicesInfo,GuestUserTradeInfo,UserPaymentInfo
+#GuestUserPaymentInfo
 #GuestUserAddress,GuestUserDevicesInfo,GuestUserInfo,GuestUserTradeInfo
-from .serializers import UserInfoSerializer,UserTradeInfoSerializer,UserDeviceInfoSerializer,UserAddressSerializer,GuestUserDeviceInfoSerializer,GuestUserTradeInfoSerializer,UserSerializer
+from .serializers import UserInfoSerializer,UserTradeInfoSerializer,UserDeviceInfoSerializer,UserAddressSerializer,GuestUserDeviceInfoSerializer,GuestUserTradeInfoSerializer,UserSerializer,UserPaymentInfoSerializer
 #GuestUserInfoSerializer,GuestUserTradeInfoSerializer,GuestUserAddressSerializer,GuestUserDeviceInfoSerializer
 #,GuestUserOrderSerializer,UserOrder
 from django.contrib.auth.models import User
@@ -64,6 +65,22 @@ class UserDeviceInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserDeviceInfoSerializer
     #lookup_field='id'
 
+class UserPaymentInfoList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated,IsOwner]
+    queryset = UserPaymentInfo.objects.all()
+    serializer_class = UserPaymentInfoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class UserPaymentInfoDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated,IsOwner]
+    queryset = UserPaymentInfo.objects.all()
+    serializer_class = UserPaymentInfoSerializer
+    #lookup_field='id'
+
 class UserTradeInfoList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = UserTradeInfo.objects.all()
@@ -112,7 +129,23 @@ class GuestUserInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
     queryset = GuestUserInfo.objects.all()
     serializer_class = GuestUserInfoSerializer
-    #lookup_field='user_id'''
+    #lookup_field='user_id
+
+class GuestUserPaymentInfoList(generics.ListCreateAPIView):
+    #permission_classes = [permissions.IsOwner]
+    queryset = GuestUserPaymentInfo.objects.all()
+    serializer_class = GuestUserPaymentInfoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class GuestUserPaymentInfoDetail(generics.RetrieveUpdateDestroyAPIView):
+    #permission_classes = [permissions.IsOwner]
+    queryset = GuestUserPaymentInfo.objects.all()
+    serializer_class = GuestUserPaymentInfoSerializer
+    #lookup_field='id'''
 
 class GuestUserTradeInfoList(generics.ListCreateAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
@@ -158,7 +191,8 @@ class GuestUserDeviceInfoList(generics.ListCreateAPIView):
 
 class GuestUserDeviceInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]
-    queryset = GuestUserDeviceInfoSerializer
+    queryset = GuestUserDevicesInfo.objects.all()
+    serializer_class = GuestUserDeviceInfoSerializer
     #lookup_field='id'
 
 '''class GuestUserOrderList(generics.ListCreateAPIView):

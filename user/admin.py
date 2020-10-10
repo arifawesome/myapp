@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import UserAddress,UserInfo,UserTradeInfo,UserDevicesInfo
+from .models import UserAddress,UserInfo,UserTradeInfo,UserDevicesInfo,UserPaymentInfo
 #UserOrder
 
 # Register your models here.
@@ -32,9 +32,14 @@ class UserDevicesInfoAdmin(admin.ModelAdmin):
     list_filter = ('trade','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving')
     search_field = ('trade','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving')
 
+class UserPaymentInfoAdmin(admin.ModelAdmin):
+    list_display = ('paymentMethod','name','username','Phone','email')
+
+    list_filter = ('paymentMethod','name','username','Phone','email')
+    search_field = ('paymentMethod','name','username','Phone','email')
 
 admin.site.register(UserAddress,UserAddressAdmin)
 admin.site.register(UserInfo, UserInfoAdmin)
 admin.site.register(UserTradeInfo, UserTradeInfoAdmin)
-#admin.site.register(UserOrder, UserOrderAdmin)
+admin.site.register(UserPaymentInfo, UserPaymentInfoAdmin)
 admin.site.register(UserDevicesInfo, UserDevicesInfoAdmin)

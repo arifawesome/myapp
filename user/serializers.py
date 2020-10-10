@@ -1,6 +1,5 @@
-from .models import UserInfo,UserTradeInfo,UserAddress,UserDevicesInfo,GuestUserDevicesInfo,GuestUserTradeInfo
-#GuestUserAddress,,GuestUserInfo,
-#UserOrder
+from .models import UserInfo,UserTradeInfo,UserAddress,UserDevicesInfo,GuestUserDevicesInfo,GuestUserTradeInfo,UserPaymentInfo
+#UserOrder,GuestUserPaymentInfo,
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -10,7 +9,7 @@ class UserAddressSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
     class Meta:
         model= UserAddress
-        fields=['id','user','addressType','addressLine1','addressLine2','city','state','zipcode','primaryAddress']
+        fields=['id','user','firstName','lastName','addressType','addressLine1','addressLine2','city','state','zipcode','primaryAddress']
 
 class UserInfoSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
@@ -47,20 +46,26 @@ class UserInfoSerializer(serializers.ModelSerializer):
         return instance'''
 
 class UserDeviceInfoSerializer(serializers.ModelSerializer):
-    trade=serializers.ReadOnlyField(source='usertradeinfo.orderNo')
+    trade=serializers.ReadOnlyField(source='trade.orderNo')
     class Meta:
         model=UserDevicesInfo
-        fields=['id','trade','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+        fields=['id','trade','deviceType','deviceModel','deviceSerial','deviceImei','deviceImei2','deviceMacAddress','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+
+class UserPaymentInfoSerializer(serializers.ModelSerializer):
+    user=serializers.ReadOnlyField(source='user.username')
+    class Meta:
+        model=UserPaymentInfo
+        fields=['id','paymentMethod','name','username','Phone','email']
 
 class UserTradeInfoSerializer(serializers.ModelSerializer):
     
     address=UserAddressSerializer
     user=serializers.ReadOnlyField(source='user.username')
     devices=UserDeviceInfoSerializer(many=True)
-
+    paymentMethod=UserPaymentInfoSerializer
     class Meta:
         model = UserTradeInfo
-        fields = ['id','user','devices','address','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['id','user','devices','address','paymentMethod','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')
@@ -191,7 +196,7 @@ class UserTradeInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserTradeInfo
-        fields = ['user','devices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['user','devices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')
@@ -246,20 +251,25 @@ class GuestUserInfoSerializer(serializers.ModelSerializer):
 
 
 class GuestUserDeviceInfoSerializer(serializers.ModelSerializer):
+    trade=serializers.ReadOnlyField(source='trade.orderNo')
     class Meta:
         model=GuestUserDevicesInfo
-        fields=['id','deviceNo','deviceType','deviceModel','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+        fields=['id','trade','deviceNo','deviceType','deviceModel','deviceSerial','deviceImei','deviceImei2','deviceMacAddress','deviceCapacity','deviceCarrier','deviceCondition','deviceYear','deviceProcessor','deviceOffer','deviceGeneration','deviceSize','deviceEdition','deviceBand','deviceEngraving']
+
+
 
 class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
-    userdevices=GuestUserDeviceInfoSerializer(many=True)
+    devices=GuestUserDeviceInfoSerializer(many=True)
     firstName=serializers.CharField(max_length=30, min_length=None, allow_blank=True, trim_whitespace=True)
     lastName=serializers.CharField(max_length=30, min_length=None, allow_blank=True, trim_whitespace=True)
     email=serializers.EmailField(max_length=None, min_length=None, allow_blank=True)
     phoneNumber=serializers.CharField(max_length=20, min_length=None, allow_blank=True, trim_whitespace=True)
+   
+
 
     class Meta:
         model = GuestUserTradeInfo
-        fields = ['id','firstName','lastName','email','phoneNumber','addressType','addressLine1','addressLine2','city','state','zipcode','userdevices','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','paymentMethod','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['id','firstName','lastName','email','devices','paymentMethod','payment_name','paymentUsername','paymentPhone','paymentEmail','phoneNumber','addressType','addressLine1','addressLine2','city','state','zipcode','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('userdevices')
@@ -270,7 +280,7 @@ class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        devices_data = validated_data.pop('userdevices')
+        devices_data = validated_data.pop('devices')
         device= (instance.trade).all()
         devices = list(device)
         instance.save()

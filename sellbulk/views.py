@@ -9,7 +9,7 @@ from rest_framework import permissions
 
 
 class InquererListView(generics.ListCreateAPIView):
-    
+    permissions_class = [permissions.AllowAny]
     queryset = Inquerer.objects.all()
     serializer_class = InquererSerializer
     #send_email_confirmation(user=self.request.user, modified=instance)
