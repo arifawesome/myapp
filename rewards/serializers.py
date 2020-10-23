@@ -3,17 +3,23 @@ from .models import *
 
 
 class UserRewardsSerializer(serializers.ModelSerializer):
-    user=serializers.ReadOnlyField(source='user.username')
+    user=serializers.CharField(max_length=20, min_length=None, allow_blank=True, trim_whitespace=True)
     
     class Meta:
         model = UserRewards
         fields = ['promocode','user']
 
 class RewardsSerializer(serializers.ModelSerializer):
+    code=models.CharField(max_length=30,null=True)
+    discount=models.CharField(max_length=30,null=True,blank=True)
+    bonus=models.CharField(max_length=30,null=True,blank=True)
+    description=models.CharField(max_length=130,null=True,blank=True)
+    condition=models.CharField(max_length=120,null=True,blank=True)
     
     class Meta:
+       
         model = Rewards
-        fields = ['description','code','bonus','condition','discount']
+        fields = ['id','description','code','bonus','condition','discount']
 
     '''def create(self, validated_data):
         codes_data = validated_data.pop('code')

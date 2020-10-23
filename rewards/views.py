@@ -17,7 +17,7 @@ class RewardsList(generics.ListCreateAPIView):
     filterset_fields = '__all__'
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save()
 
 
 
@@ -30,3 +30,4 @@ class UserRewardsList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+    

@@ -10,9 +10,18 @@ class Rewards(models.Model):
     bonus=models.CharField(max_length=30,null=True,blank=True)
     description=models.CharField(max_length=130,null=True,blank=True)
     condition=models.CharField(max_length=120,null=True,blank=True)
+
+    def __str__(self):
+        return str(self.code)+ " " + str(self.description)
     
 
 class UserRewards(models.Model):
     user=models.ForeignKey('auth.User',on_delete=models.CASCADE,default=None)
-    promocode=models.ForeignKey(Rewards, related_name='promocode', on_delete=models.CASCADE)
+    promocode=models.ForeignKey(Rewards,on_delete=models.CASCADE)
+
+   
+        
+
+
+
     
