@@ -2,6 +2,16 @@ from django.db import models
 
 # Create your models here.
 
+TOPIC_CHOICES = (
+    ("Payment Status","Payment Status"),
+    ("My Order","My Order"),
+    ("Returns","Returns"),
+    ("Cancellation","Cancellation"),
+    ("Shipping Status","Shipping Status"),
+    ("General Information","General Information"),
+    ("Other","Other"),
+    
+)
     
 class Inquerer(models.Model):
     firstName=models.CharField(max_length=30,null=True)
@@ -21,4 +31,12 @@ class Devices(models.Model):
     deviceCondition=models.CharField(max_length=30,null=True)
     deviceQuantity=models.IntegerField(blank=True,null=True)
         
-    
+class GeneralInquery(models.Model):
+    firstName=models.CharField(max_length=30,null=True)
+    lastName=models.CharField(max_length=30,null=True)
+    email=models.EmailField()
+    phoneNumber=models.CharField(max_length=30,null=True)
+    topic=models.CharField(choices= TOPIC_CHOICES,max_length=30,null=True)
+    subject=models.CharField(max_length=300,null=True)
+    description=models.CharField(max_length=2000,null=True)
+

@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Devices,Inquerer
+from .models import Devices,Inquerer, GeneralInquery
+
+
 class DevicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Devices
@@ -18,3 +20,9 @@ class InquererSerializer(serializers.ModelSerializer):
         for device_data in devices_data:
             Devices.objects.create(inquerer=inquerer, **device_data)
         return inquerer
+
+
+class GeneralInquerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GeneralInquery
+        fields = ['description','subject','firstName','lastName','topic','email','phoneNumber']

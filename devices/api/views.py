@@ -2,12 +2,14 @@ from rest_framework.generics import ListAPIView,RetrieveAPIView,CreateAPIView,De
 from devices.models import Iphone,Macbook,Ipad,SamsungPhone,GooglePhone,Ipod,Iwatch,Devices,Airpods
 from .serializers import IphoneSerializer, MacbookSerializer,IpadSerializer,SamsungPhoneSerializer,GooglePhoneSerializer, IpodSerializer, IwatchSerializer, DevicesSerializer,AirpodsSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 class IphoneListView(ListAPIView):
     queryset=Iphone.objects.all()
     serializer_class=IphoneSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = '__all__'
+    #filter_backends = [DjangoFilterBackend]
+    filterset_fields = [filters.SearchFilter]
+    search_fields = ['iphone_model', 'carrier']
 
 class IphoneDetailView(RetrieveAPIView):
     queryset=Iphone.objects.all()
