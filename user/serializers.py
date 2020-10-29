@@ -272,7 +272,7 @@ class GuestUserTradeInfoSerializer(serializers.ModelSerializer):
         fields = ['id','firstName','lastName','email','devices','paymentMethod','payment_name','paymentUsername','paymentPhone','paymentEmail','phoneNumber','addressType','addressLine1','addressLine2','city','state','zipcode','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
-        devices_data = validated_data.pop('userdevices')
+        devices_data = validated_data.pop('devices')
         trade = GuestUserTradeInfo.objects.create(**validated_data)
         for  device_data in  devices_data:
             GuestUserDevicesInfo.objects.create(trade=trade, **device_data)
