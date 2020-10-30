@@ -175,7 +175,8 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST =[
    "http://localhost:3000",
-    "http://localhost:3001"
+    "http://localhost:3001",
+    "https://cashmydevice-5d5e9.web.app"
 ]
 
 
