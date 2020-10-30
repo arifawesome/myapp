@@ -55,7 +55,7 @@ class UserPaymentInfoSerializer(serializers.ModelSerializer):
     user=serializers.ReadOnlyField(source='user.username')
     class Meta:
         model=UserPaymentInfo
-        fields=['id','paymentMethod','name','username','Phone','email']
+        fields=['user','id','paymentMethod','name','username','Phone','email']
 
 class UserTradeInfoSerializer(serializers.ModelSerializer):
     
