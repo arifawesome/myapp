@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.conf import settings
+from django.core.mail import send_mail
 from rest_framework import status
 from .permission import IsOwner
 from django.views.decorators.csrf import csrf_exempt
@@ -89,7 +91,10 @@ class UserTradeInfoList(generics.ListCreateAPIView):
     filterset_fields = '__all__'
     
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        created_object=serializer.save(user=self.request.user)
+        username=created_object.user
+        orderno=created_object.orderNo
+        send_mail('Your order has been received with Order #{}'.format(orderno),'hi {},\nCongratulations! your order has been placed successflly'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.user.email,], fail_silently=False,)
 
 class UserTradeInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated,IsOwner]
@@ -155,7 +160,12 @@ class GuestUserTradeInfoList(generics.ListCreateAPIView):
     filterset_fields = '__all__'
     
     def perform_create(self, serializer):
-        serializer.save()
+        created_object=serializer.save()
+        username=created_object.firstName
+        orderno=created_object.orderNo
+        send_mail('Your order has been received with Order #{}'.format(orderno),'hi {},\nCongratulations! your order has been placed successflly'.format(firstName),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
+
+
 
 class GuestUserTradeInfoDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated,IsOwner]

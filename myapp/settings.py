@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'django_filters',
     'user',
     'sellbulk',
-    'rewards'
+    'rewards',
+    'sessionstore'
     
   
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Devices,Inquerer, GeneralInquery
+from .models import Devices,Inquerer,GeneralInquery
 
 
 class DevicesSerializer(serializers.ModelSerializer):
@@ -12,7 +12,7 @@ class InquererSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Inquerer
-        fields = ['devices','email', 'firstName', 'lastName']
+        fields = ['inqueryNo','devices','email', 'firstName', 'lastName']
 
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')
@@ -25,4 +25,4 @@ class InquererSerializer(serializers.ModelSerializer):
 class GeneralInquerySerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneralInquery
-        fields = ['description','subject','firstName','lastName','topic','email','phoneNumber']
+        fields = ['caseNo','description','subject','firstName','lastName','topic','email','phoneNumber']

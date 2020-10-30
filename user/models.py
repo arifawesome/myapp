@@ -154,6 +154,9 @@ class GuestUserTradeInfo(models.Model):
     deviceTrackingOutbound=models.CharField(max_length=30,blank=True,null=True)
     #deviceImages=models.ImageField(upload_to='Deviceimages',blank=True,null=True)
 
+    def __str__(self):
+        return str(self.orderNo)
+
 
 class GuestUserDevicesInfo(models.Model):
     trade=models.ForeignKey(GuestUserTradeInfo,related_name='devices',on_delete=models.CASCADE)

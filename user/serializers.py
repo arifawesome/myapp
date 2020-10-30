@@ -60,12 +60,13 @@ class UserPaymentInfoSerializer(serializers.ModelSerializer):
 class UserTradeInfoSerializer(serializers.ModelSerializer):
     
     address=UserAddressSerializer
+    email=serializers.ReadOnlyField(source='user.email')
     user=serializers.ReadOnlyField(source='user.username')
     devices=UserDeviceInfoSerializer(many=True)
     paymentMethod=UserPaymentInfoSerializer
     class Meta:
         model = UserTradeInfo
-        fields = ['id','user','devices','address','paymentMethod','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
+        fields = ['id','user','email','devices','address','paymentMethod','orderNo','status','orderDate','lableSent','shippingLableReceived','deviceReceived','deviceReview','deviceAccepted','deviceShippingMethod','deviceTrackingInbound','deviceTrackingOutbound','totalPayment']
     
     def create(self, validated_data):
         devices_data = validated_data.pop('devices')

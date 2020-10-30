@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
@@ -14,12 +15,14 @@ TOPIC_CHOICES = (
 )
     
 class Inquerer(models.Model):
+    inqueryNo=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     firstName=models.CharField(max_length=30,null=True)
     lastName=models.CharField(max_length=30,null=True)
     email=models.EmailField()
     companyOrganization=models.CharField(max_length=30,null=True)
     phoneNumber=models.CharField(max_length=30,null=True)
     additionalInfo=models.CharField(max_length=30,null=True)
+
    
     def __str__(self):
         return str(self.firstName )+ " " + str(self.lastName )+ " " + str(self.email )
@@ -32,6 +35,7 @@ class Devices(models.Model):
     deviceQuantity=models.IntegerField(blank=True,null=True)
         
 class GeneralInquery(models.Model):
+    caseNo=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     firstName=models.CharField(max_length=30,null=True)
     lastName=models.CharField(max_length=30,null=True)
     email=models.EmailField()
@@ -39,4 +43,6 @@ class GeneralInquery(models.Model):
     topic=models.CharField(choices= TOPIC_CHOICES,max_length=30,null=True)
     subject=models.CharField(max_length=300,null=True)
     description=models.CharField(max_length=2000,null=True)
+
+    
 

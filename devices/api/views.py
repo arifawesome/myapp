@@ -7,9 +7,9 @@ from rest_framework import filters
 class IphoneListView(ListAPIView):
     queryset=Iphone.objects.all()
     serializer_class=IphoneSerializer
-    #filter_backends = [DjangoFilterBackend]
-    filterset_fields = [filters.SearchFilter]
-    search_fields = ['iphone_model', 'carrier']
+    filter_backends = [filters.SearchFilter,DjangoFilterBackend]
+    filterset_fields = '__all__'
+    search_fields = ['Offer', 'capacity', 'carrier', 'condition', 'id', 'iphone_model']
 
 class IphoneDetailView(RetrieveAPIView):
     queryset=Iphone.objects.all()
