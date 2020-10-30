@@ -91,7 +91,7 @@ class UserTradeInfo(models.Model):
     deviceTrackingOutbound=models.CharField(max_length=30,blank=True,null=True)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.orderNo)+ " " +str(self.user)
 
 class UserDevicesInfo(models.Model):
     
@@ -155,7 +155,7 @@ class GuestUserTradeInfo(models.Model):
     #deviceImages=models.ImageField(upload_to='Deviceimages',blank=True,null=True)
 
     def __str__(self):
-        return str(self.orderNo)
+        return str(self.orderNo)+ " " +str(self.firstName)+ " " +str(self.lastName)
 
 
 class GuestUserDevicesInfo(models.Model):

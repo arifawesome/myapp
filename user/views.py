@@ -163,7 +163,7 @@ class GuestUserTradeInfoList(generics.ListCreateAPIView):
         created_object=serializer.save()
         username=created_object.firstName
         orderno=created_object.orderNo
-        send_mail('Your order has been received with Order #{}'.format(orderno),'hi {},\nCongratulations! your order has been placed successflly'.format(firstName),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
+        send_mail('Your order has been received with Order #{}'.format(orderno),'hi {},\nCongratulations! your order has been placed successflly'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
 
 
 
