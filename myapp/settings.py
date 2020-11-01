@@ -63,7 +63,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 6
+SITE_ID = 7
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
