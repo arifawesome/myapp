@@ -21,7 +21,7 @@ class InquererListView(generics.ListCreateAPIView):
         created_object=serializer.save()
         username=created_object.firstName
         orderno=created_object.inqueryNo
-        send_mail('Your inquery has been received with Case #{}'.format(orderno),'hi {},\nCongratulations! your Inquery has been received successflly\nPlease allow us 48 hour to address your query and return back to you\n'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
+        send_mail('Your inquery has been received with Case #{}'.format(orderno),'Hi {},\nCongratulations! your Inquery has been received successflly!\n\rPlease allow us 48 hour to address your query and return back to you\n\r'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
 
 
 class GeneralInqueryListView(generics.ListCreateAPIView):
@@ -34,4 +34,4 @@ class GeneralInqueryListView(generics.ListCreateAPIView):
         created_object=serializer.save()
         username=created_object.firstName
         orderno=created_object.caseNo
-        send_mail('Your case has been received with Case #{}'.format(orderno),'hi {},\nCongratulations! your Case has been received successflly\nPlease allow us 48 hour to address your query and return back to you\n'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
+        send_mail('Your case has been received with Case #{}'.format(orderno),'Hi {},\nCongratulations! your Case has been received successflly!\n\rPlease allow us 48 hour to address your query and return back to you\n\r'.format(username),'{}'.format(settings.EMAIL_HOST_USER),[created_object.email,], fail_silently=False,)
